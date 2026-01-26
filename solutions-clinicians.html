@@ -1,0 +1,2988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.6, minimum-scale=0.6">
+  <title>AI Tools for OB-GYN Clinicians & L&D Nurses — Birth Model</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Birth Model gives OB-GYN physicians and L&D nurses AI-powered tools for delivery time prediction, risk assessment, smart handoffs, and automated documentation. Save 30+ minutes per patient.">
+  <meta name="keywords" content="OB-GYN clinical tools, L&D nurse software, delivery time prediction app, SBAR handoff automation, OB documentation AI, labor progress prediction, PPH risk calculator, preeclampsia screening, nurse shift handoff, Epic mobile app OB">
+  <meta name="author" content="Birth Model, Inc.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://birthmodel.com/solutions-clinicians.html">
+  <link rel="icon" type="image/png" href="BM_App_Icon.png">
+
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://birthmodel.com/solutions-clinicians.html">
+  <meta property="og:title" content="AI Tools for OB-GYN Clinicians & L&D Nurses — Birth Model">
+  <meta property="og:description" content="Save 30+ minutes per patient with AI-powered delivery predictions, smart handoffs, and automated documentation.">
+  <meta property="og:image" content="https://birthmodel.com/og-image.png">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Tools for OB-GYN Clinicians & L&D Nurses — Birth Model">
+  <meta name="twitter:description" content="Save 30+ minutes per patient with AI-powered delivery predictions and automated documentation.">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bm-black: #1b1b1b;
+      --bm-white: #ffffff;
+      --bm-gray: #6c757d;
+      --bm-teal: #abdfe2;
+      --bm-coral: #ff7660;
+      --bm-coral-light: #ffebe7;
+      --bm-dark-teal: #1e3d3c;
+      --bm-light-gray: #f8fafa;
+      --bm-warm-gray: #f4f2f1;
+      --bm-cream: #faf9f7;
+      --bm-teal-light: #e8f6f7;
+      --bm-border: #e8e6e4;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'Lato', sans-serif; 
+      background: var(--bm-cream); 
+      color: var(--bm-black);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    
+    .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Animated Cursor Styles */
+    .demo-cursor {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+      z-index: 100;
+      transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1), top 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s ease;
+    }
+    .demo-cursor svg {
+      width: 20px;
+      height: 20px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    .demo-cursor.clicking { transform: scale(0.85); }
+    .cursor-click-ripple {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 118, 96, 0.3);
+      transform: translate(-50%, -50%) scale(0);
+      pointer-events: none;
+      z-index: 99;
+    }
+    .cursor-click-ripple.animate { animation: clickRipple 0.6s ease-out forwards; }
+    @keyframes clickRipple {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+    }
+    .demo-cursor-label {
+      position: absolute;
+      top: 24px;
+      left: 12px;
+      background: var(--bm-dark-teal);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 700;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .demo-cursor.clicking .demo-cursor-label { opacity: 1; transform: translateY(0); }
+    
+    /* Navigation styles moved to nav.css */
+
+    /* Hero */
+    .page-hero {
+      padding: 140px 40px 60px;
+      background: linear-gradient(170deg, var(--bm-cream) 0%, var(--bm-teal-light) 100%);
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 20px;
+      max-width: 950px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .page-hero h1 span { color: var(--bm-coral); }
+    .page-hero p {
+      font-size: 18px;
+      color: var(--bm-gray);
+      max-width: 650px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    .btn-primary { background: var(--bm-coral); color: white; box-shadow: 0 6px 25px rgba(255, 118, 96, 0.4); }
+    .btn-primary:hover { transform: translateY(-2px); }
+    
+    /* Quote Block */
+    .quote-section {
+      padding: 40px 40px;
+      background: var(--bm-dark-teal);
+      position: relative;
+    }
+    .quote-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .quote-mark {
+      font-family: Georgia, serif;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--bm-coral);
+      flex-shrink: 0;
+      margin-top: -5px;
+    }
+    .quote-mark.end {
+      display: none;
+    }
+    .quote-content {
+      flex: 1;
+    }
+    .quote-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .quote-author {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: var(--bm-teal);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .quote-section { padding: 30px 20px; }
+      .quote-mark { font-size: 36px; }
+      .quote-text { font-size: 15px; }
+    }
+    
+    /* Benefits Grid */
+    .benefits-section {
+      padding: 60px 40px;
+      background: white;
+    }
+    .benefits-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-header h2 { font-size: 36px; font-weight: 900; color: var(--bm-dark-teal); margin-bottom: 12px; }
+    .section-header p { font-size: 16px; color: var(--bm-gray); }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .benefit-card {
+      background: var(--bm-light-gray);
+      border-radius: 20px;
+      padding: 36px;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+    .benefit-card:hover { transform: translateY(-6px); border-color: var(--bm-teal); }
+    .benefit-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--bm-teal);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .benefit-title { font-size: 20px; font-weight: 900; color: var(--bm-dark-teal); margin-bottom: 12px; }
+    .benefit-desc { font-size: 14px; color: var(--bm-gray); line-height: 1.7; }
+    
+    /* Feature Section */
+    .feature-section {
+      padding: 80px 40px;
+      background: var(--bm-warm-gray);
+    }
+    .feature-inner { max-width: 1100px; margin: 0 auto; }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .feature-content h2 {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 20px;
+    }
+    .feature-content p {
+      font-size: 16px;
+      color: var(--bm-gray);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .feature-list { list-style: none; }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--bm-gray);
+    }
+    .feature-list .icon { color: #22c55e; flex-shrink: 0; }
+    .feature-image {
+      background: linear-gradient(135deg, var(--bm-teal-light), var(--bm-coral-light));
+      border-radius: 24px;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+    
+    /* Mobile App Section */
+    .mobile-section {
+      padding: 80px 40px;
+      background: white;
+      position: relative;
+      z-index: 1;
+    }
+    .mobile-inner { max-width: 1000px; margin: 0 auto; width: 100%; }
+    .mobile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .mobile-section {
+        padding: 60px 20px;
+      }
+    }
+    /* iPhone 17 Frame */
+    .mobile-phone {
+      width: 290px;
+      height: 600px;
+      background: #1a1a1a;
+      border-radius: 52px;
+      padding: 10px;
+      position: relative;
+      box-shadow:
+        0 0 0 2px #2a2a2a,
+        0 0 0 4px #1a1a1a,
+        0 30px 60px rgba(0,0,0,0.35),
+        inset 0 0 2px rgba(255,255,255,0.1);
+      margin: 0 auto;
+      /* Scroll-driven entrance - starts hidden, animates in */
+      opacity: 0;
+      transform: translateY(80px);
+      transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-phone.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Fallback for no-JS or immediate view */
+    .mobile-section:target .mobile-phone,
+    .mobile-phone.no-animation {
+      opacity: 1;
+      transform: none;
+    }
+    /* Side buttons */
+    .mobile-phone::before {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 140px;
+      width: 3px;
+      height: 70px;
+      background: #2a2a2a;
+      border-radius: 0 2px 2px 0;
+    }
+    .mobile-phone::after {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 100px;
+      width: 3px;
+      height: 35px;
+      background: #2a2a2a;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 50px 0 #2a2a2a, 0 90px 0 #2a2a2a;
+    }
+    .phone-screen {
+      background: linear-gradient(180deg, #3d7a77 0%, #2d5a58 50%, #1e3d3c 100%);
+      border-radius: 44px;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Dynamic Island */
+    .dynamic-island {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 34px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+    }
+    .dynamic-island::before {
+      content: '';
+      position: absolute;
+      right: 18px;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #1a3a39 0%, #0a1a1a 100%);
+      border-radius: 50%;
+    }
+    /* iOS Lock Screen Style */
+    .ios-lockscreen {
+      padding: 60px 16px 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .ios-time {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .ios-time-display {
+      font-size: 64px;
+      font-weight: 300;
+      color: white;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    .ios-date {
+      font-size: 16px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+    }
+    /* iOS Notification Stack */
+    .ios-notifications {
+      flex: 1;
+      overflow-y: auto;
+      padding-top: 20px;
+    }
+    .ios-notif-group {
+      margin-bottom: 12px;
+    }
+    .ios-notif {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      animation: notifSlide 0.4s ease-out backwards;
+    }
+    .ios-notif:nth-child(1) { animation-delay: 0.1s; }
+    .ios-notif:nth-child(2) { animation-delay: 0.3s; }
+    .ios-notif:nth-child(3) { animation-delay: 0.5s; }
+    @keyframes notifSlide {
+      from { opacity: 0; transform: translateY(-15px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .ios-notif-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .ios-notif-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      overflow: hidden;
+      background: white;
+    }
+    .ios-notif-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ios-notif-app {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      flex: 1;
+    }
+    .ios-notif-time {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+    .ios-notif-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 3px;
+    }
+    .ios-notif-body {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.35;
+    }
+    .ios-notif.urgent {
+      background: rgba(255, 118, 96, 0.25);
+      border: 1px solid rgba(255, 118, 96, 0.3);
+    }
+    .ios-notif.urgent .ios-notif-icon {
+      background: linear-gradient(135deg, #ff7660, #ff5a40);
+    }
+    /* Home indicator */
+    .ios-home-indicator {
+      width: 120px;
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+      margin: 12px auto 8px;
+    }
+    .mobile-content {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+    }
+    .mobile-content.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .mobile-content h2 { font-size: 32px; font-weight: 900; color: var(--bm-dark-teal); margin-bottom: 16px; }
+    .mobile-content p { font-size: 16px; color: var(--bm-gray); line-height: 1.7; margin-bottom: 24px; }
+    .app-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .app-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: #4a5568;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+    .app-btn:hover { background: #3d4654; }
+    .app-btn:hover { transform: translateY(-2px); }
+    .app-btn-label { font-size: 9px; opacity: 0.8; }
+    .app-btn-name { font-size: 14px; font-weight: 700; }
+    
+    /* CTA */
+    .cta-section {
+      padding: 70px 40px;
+      background: linear-gradient(135deg, #4a8f8c 0%, #3d7a77 50%, #2d5a58 100%);
+      text-align: center;
+    }
+    .cta-inner { max-width: 600px; margin: 0 auto; }
+    .cta-section h2 { font-size: 36px; font-weight: 900; color: white; margin-bottom: 16px; }
+    .cta-section h2 span { color: var(--bm-teal); }
+    .cta-section p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 30px; }
+    
+        /* Footer */
+    .footer {
+      background: #1e3d3c;
+      padding: 70px 50px 30px;
+      color: white;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(4, 1fr);
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    .footer-brand {}
+    .footer-brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .footer-brand-logo img {
+      height: 32px;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+        .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .footer-social-icon {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bm-dark-teal);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .footer-social-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+    }
+    .footer-social-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #abdfe2;
+      margin-bottom: 20px;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+    .footer-col a:hover {
+      color: white;
+      padding-left: 4px;
+    }
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-legal {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-legal a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: white; text-decoration: underline; }
+    .footer-badges {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+      transition: all 0.2s ease;
+    }
+    .footer-badge:hover {
+      background: rgba(255,255,255,0.12);
+    }
+    .footer-badge .check {
+      color: #4ade80;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="Birth_Model_Logo.png" alt="Birth Model" class="nav-logo-img">
+      </a>
+      <div class="nav-links">
+        <a href="solutions-hospitals.html" class="nav-link">For Hospitals</a>
+        <a href="solutions-clinicians.html" class="nav-link active">For Clinicians</a>
+        <a href="company.html" class="nav-link">Company</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">Resources ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="blogs.html" class="nav-dropdown-item">Blog</a>
+            <a href="videos.html" class="nav-dropdown-item">Videos</a>
+            <a href="roi-calculator.html" class="nav-dropdown-item">ROI Calculator</a>
+            <a href="implementation.html" class="nav-dropdown-item">Implementation</a>
+            <a href="careers.html" class="nav-dropdown-item">Careers</a>
+          </div>
+        </div>
+        <a href="https://provider.birthmodel.com" class="nav-login" target="_blank">Clinician Login</a>
+        <a href="demo.html" class="nav-cta">Schedule Demo</a>
+      </div>
+      <div class="nav-hamburger" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="solutions-hospitals.html">For Hospitals</a>
+    <a href="solutions-clinicians.html">For Clinicians</a>
+    <a href="company.html">Company</a>
+    <a href="blogs.html">Blog</a>
+    <a href="videos.html">Videos</a>
+    <a href="roi-calculator.html">ROI Calculator</a>
+          <a href="implementation.html">Mobile Implementation</a>
+    <a href="implementation.html">Mobile Implementation</a>
+    <a href="careers.html">Careers</a>
+    <a href="https://provider.birthmodel.com" class="mobile-login" target="_blank">Clinician Login</a>
+    <a href="demo.html" class="mobile-cta">Schedule Demo</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <h1>Reduce <span>Burnout</span>. Enhance <span>Patient Care</span>. Reclaim Your Time.</h1>
+    <p>It all started with the idea to help obstetricians, hospitals, and patients optimize the maternity experience. Our patented technology brings the best in healthcare IT to the birth experience.</p>
+    <a href="demo.html" class="btn btn-primary">Request a Demo</a>
+  </section>
+
+  <!-- Quote -->
+  <section class="quote-section">
+    <div class="quote-inner">
+      <span class="quote-mark">"</span>
+      <div class="quote-content">
+        <p class="quote-text">At Birth Model, we're bridging the gap in healthcare technology to significantly decrease provider burnout, counter the declining number of OB-GYNs, and prevent poor patient outcomes. Our innovative solutions are designed to support and empower healthcare professionals while enhancing the quality of care for every patient.</p>
+        <p class="quote-author">— Anish J. Shah, MD, FACOG, Founder and CEO</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="benefits-section">
+    <div class="benefits-inner">
+      <div class="section-header">
+        <h2>How Birth Model Helps Providers</h2>
+        <p>Tools designed by clinicians, for clinicians.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">⏱️</div>
+          <h3 class="benefit-title">Decrease Provider Burnout</h3>
+          <p class="benefit-desc">Our patented algorithms accurately predict delivery times for all types of obstetric patients. This reduces provider burnout by alleviating unpredictability and enhances scheduling efficiency.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">📋</div>
+          <h3 class="benefit-title">Decrease Insurance Denials</h3>
+          <p class="benefit-desc">Simplify patient sign-outs by providing comprehensive summaries with relevant demographics and interventions, including cervical ripening agents, anesthesia, augmentation methods, and cervical examinations.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">🩺</div>
+          <h3 class="benefit-title">Better Patient Counseling</h3>
+          <p class="benefit-desc">Allow healthcare providers to offer better patient counseling, ensuring that patients are well-informed and prepared for delivery, ultimately improving outcomes in obstetric care.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">📊</div>
+          <h3 class="benefit-title">Visual Command Center</h3>
+          <p class="benefit-desc">The Motherboard provides a real-time visual overview of every patient, every risk, and every timeline—giving you situational awareness at a glance.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">📱</div>
+          <h3 class="benefit-title">Mobile Notifications</h3>
+          <p class="benefit-desc">Stay informed with HIPAA-compliant push notifications for delivery updates, risk alerts, and patient status changes—right on your mobile device.</p>
+        </div>
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">✍️</div>
+          <h3 class="benefit-title">AI Documentation</h3>
+          <p class="benefit-desc">AI Diagnotes automates delivery notes with real-time ICD-10/CPT coding, saving 30+ minutes per patient and reducing documentation burden.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Handoffs Feature - Scroll-Driven -->
+  <section class="feature-section handoff-scroll-section" id="handoff-section">
+    <style>
+      .handoff-scroll-section {
+        min-height: 180vh;
+        position: relative;
+        padding: 0 !important;
+        background: linear-gradient(180deg, white 0%, #f8fafa 100%);
+      }
+      .handoff-sticky-container {
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+      }
+      .handoff-grid {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 30px;
+        align-items: center;
+        max-width: 1200px;
+        width: 100%;
+      }
+      .handoff-content h2 {
+        font-size: 32px;
+        font-weight: 900;
+        color: var(--bm-dark-teal);
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      .handoff-content p {
+        font-size: 16px;
+        color: var(--bm-gray);
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+
+      /* Step Indicators */
+      .handoff-steps {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+      .handoff-step {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: #f0f4f4;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--bm-gray);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0.5;
+      }
+      .handoff-step.active {
+        background: var(--bm-dark-teal);
+        color: white;
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      .handoff-step.completed {
+        background: #22c55e;
+        color: white;
+        opacity: 1;
+      }
+      .handoff-step-num {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+      }
+      .handoff-step.active .handoff-step-num,
+      .handoff-step.completed .handoff-step-num {
+        background: rgba(255,255,255,0.3);
+      }
+
+      .handoff-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .handoff-features li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 0;
+        font-size: 14px;
+        color: var(--bm-gray);
+        line-height: 1.4;
+      }
+      .handoff-features .check-icon {
+        color: #22c55e;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-size: 14px;
+      }
+      .handoff-features strong {
+        color: var(--bm-dark-teal);
+      }
+      .handoff-preview-wrapper {
+        position: relative;
+        min-height: 520px;
+      }
+
+      /* Progress bar */
+      .handoff-progress {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 4px;
+        background: #e5e7eb;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .handoff-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--bm-teal), var(--bm-coral));
+        border-radius: 2px;
+        transition: width 0.3s ease;
+        width: 0%;
+      }
+
+      /* Bento Grid Styles */
+      .bento-container {
+        position: relative;
+        width: 100%;
+        min-height: 520px;
+        padding: 10px;
+      }
+      .bento-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 14px;
+      }
+      .bento-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(30, 61, 60, 0.08);
+        box-shadow: 0 8px 32px rgba(30, 61, 60, 0.1), 0 2px 8px rgba(0,0,0,0.04);
+        overflow: visible;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      .bento-card.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .bento-card:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 25px 80px rgba(30, 61, 60, 0.18), 0 8px 24px rgba(0,0,0,0.08);
+        z-index: 10;
+      }
+      .bento-card.large {
+        grid-column: span 2;
+      }
+
+
+      /* Mini UI Card Styles */
+      .mini-ui-header {
+        padding: 12px 16px;
+        background: linear-gradient(135deg, #e8f4f3, #d4ecea);
+        border-radius: 20px 20px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(30, 61, 60, 0.08);
+      }
+      .mini-ui-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--bm-dark-teal);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .mini-ui-title img {
+        height: 14px;
+      }
+      .mini-ui-badge {
+        background: var(--bm-coral);
+        color: white;
+        font-size: 8px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+      .mini-ui-body {
+        padding: 16px;
+      }
+
+      /* Patient Card UI */
+      .patient-mini {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: linear-gradient(135deg, #f8fafa, #f0f4f4);
+        border-radius: 12px;
+        margin-bottom: 12px;
+      }
+      .patient-avatar {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--bm-teal), var(--bm-dark-teal));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .patient-avatar-inner {
+        width: 32px;
+        height: 32px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+      }
+      .patient-info { flex: 1; }
+      .patient-name-bar {
+        height: 10px;
+        width: 80px;
+        background: linear-gradient(90deg, var(--bm-dark-teal), var(--bm-teal));
+        border-radius: 5px;
+        margin-bottom: 6px;
+      }
+      .patient-detail-bars {
+        display: flex;
+        gap: 6px;
+      }
+      .patient-detail-bar {
+        height: 6px;
+        background: #e0e0e0;
+        border-radius: 3px;
+      }
+      .patient-tags {
+        display: flex;
+        gap: 4px;
+        flex-shrink: 0;
+      }
+      .patient-tag {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        transition: transform 0.2s ease;
+        box-shadow: 0 2px 8px currentColor;
+      }
+      .patient-tag.green { background: #22c55e; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.5); }
+      .patient-tag.yellow { background: #f59e0b; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.5); }
+      .patient-tag.red { background: #ef4444; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.5); animation: pulse-tag 1.5s infinite; }
+      @keyframes pulse-tag {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+      }
+
+      /* Data Grid */
+      .data-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .data-cell {
+        background: white;
+        border-radius: 10px;
+        padding: 12px 8px;
+        text-align: center;
+        border: 1px solid #eee;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+      }
+      .data-cell:hover {
+        border-color: var(--bm-teal);
+        transform: scale(1.08);
+        box-shadow: 0 8px 25px rgba(30, 61, 60, 0.12);
+      }
+      .data-cell.alert {
+        background: #fef2f2;
+        border-color: #fca5a5;
+      }
+      .data-cell.good {
+        background: #f0fdf4;
+        border-color: #86efac;
+      }
+      .data-label {
+        font-size: 7px;
+        color: var(--bm-gray);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .data-value-bar {
+        height: 8px;
+        background: linear-gradient(90deg, var(--bm-teal), var(--bm-teal-light));
+        border-radius: 4px;
+        margin: 0 auto;
+      }
+      .data-cell.alert .data-value-bar {
+        background: linear-gradient(90deg, #ef4444, #fca5a5);
+      }
+      .data-cell.good .data-value-bar {
+        background: linear-gradient(90deg, #22c55e, #86efac);
+      }
+
+      /* SBAR Card */
+      .sbar-mini-section {
+        margin-bottom: 10px;
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.4s ease;
+      }
+      .sbar-mini-section.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .sbar-label {
+        font-size: 9px;
+        font-weight: 900;
+        padding: 4px 10px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 6px;
+      }
+      .sbar-label.s { background: var(--bm-coral); color: white; }
+      .sbar-label.b { background: #5c6bc0; color: white; }
+      .sbar-label.a { background: #f59e0b; color: white; }
+      .sbar-label.r { background: #22c55e; color: white; }
+      .sbar-content-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .sbar-bar {
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 3px;
+        position: relative;
+        overflow: hidden;
+      }
+      .sbar-bar::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        animation: shimmer 2s infinite;
+      }
+      @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      /* AI Badge */
+      .ai-sparkle {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: linear-gradient(135deg, #5c6bc0, #7c4dff);
+        color: white;
+        font-size: 9px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        box-shadow: 0 4px 15px rgba(92, 107, 192, 0.4);
+      }
+      .ai-sparkle::before {
+        content: '✨';
+        font-size: 10px;
+      }
+
+      /* Action Buttons */
+      .action-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .action-btn {
+        flex: 1;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .action-btn.primary {
+        background: linear-gradient(135deg, var(--bm-coral), #ff8a70);
+        color: white;
+        box-shadow: 0 4px 15px rgba(255, 118, 96, 0.3);
+      }
+      .action-btn.secondary {
+        background: white;
+        color: var(--bm-dark-teal);
+        border: 2px solid var(--bm-teal);
+      }
+      .action-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      /* Flow Lines */
+      .flow-connector {
+        position: absolute;
+        pointer-events: none;
+        z-index: 5;
+      }
+      .flow-line {
+        stroke: var(--bm-teal);
+        stroke-width: 2;
+        fill: none;
+        stroke-dasharray: 8 4;
+        animation: flowDash 1s linear infinite;
+      }
+      @keyframes flowDash {
+        0% { stroke-dashoffset: 12; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .flow-dot {
+        fill: var(--bm-coral);
+        animation: flowPulse 2s ease-in-out infinite;
+      }
+      @keyframes flowPulse {
+        0%, 100% { r: 4; opacity: 1; }
+        50% { r: 6; opacity: 0.7; }
+      }
+
+      /* Scroll-driven card states */
+      .bento-card.step-highlight {
+        transform: scale(1.02);
+        box-shadow: 0 25px 80px rgba(30, 61, 60, 0.2), 0 8px 24px rgba(0,0,0,0.1);
+        border-color: var(--bm-coral);
+        z-index: 10;
+      }
+      .bento-card.step-dim {
+        opacity: 0.4;
+        filter: grayscale(0.3);
+      }
+      .bento-card.step-complete {
+        border-color: #22c55e;
+      }
+      .bento-card.step-complete::after {
+        content: '✓';
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 24px;
+        height: 24px;
+        background: #22c55e;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 20;
+      }
+
+      @media (max-width: 900px) {
+        .handoff-scroll-section {
+          min-height: auto;
+        }
+        .handoff-sticky-container {
+          position: relative;
+          top: 0;
+          height: auto;
+          padding: 60px 20px;
+        }
+        .handoff-grid {
+          grid-template-columns: 1fr;
+        }
+        .handoff-steps {
+          flex-wrap: wrap;
+        }
+        .bento-grid {
+          grid-template-columns: 1fr;
+        }
+        .bento-card.large {
+          grid-column: span 1;
+        }
+        .data-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .handoff-progress {
+          display: none;
+        }
+      }
+    </style>
+
+    <div class="handoff-sticky-container">
+      <div class="handoff-grid">
+        <div class="handoff-content">
+          <div class="handoff-steps">
+            <div class="handoff-step active" data-step="1">
+              <span class="handoff-step-num">1</span>
+              Patient Data
+            </div>
+            <div class="handoff-step" data-step="2">
+              <span class="handoff-step-num">2</span>
+              SBAR Generation
+            </div>
+            <div class="handoff-step" data-step="3">
+              <span class="handoff-step-num">3</span>
+              Export
+            </div>
+          </div>
+          <h2>One-Click Smart Handoffs</h2>
+          <p>Generate complete handoff reports instantly—nursing shifts or clinician sign-outs.</p>
+          <ul class="handoff-features">
+            <li><span class="check-icon">✓</span> <strong>Nursing:</strong> Vitals, I/O, meds, care plan</li>
+            <li><span class="check-icon">✓</span> <strong>SBAR:</strong> AI-generated summaries</li>
+            <li><span class="check-icon">✓</span> Risk factors auto-highlighted</li>
+            <li><span class="check-icon">✓</span> One-click Epic sync</li>
+          </ul>
+          <a href="blog-handoff-burnout.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--bm-coral); text-decoration: none; margin-top: 16px;">📖 How Handoff Failures Drive Burnout →</a>
+        </div>
+
+        <!-- Bento Grid UI Mockup -->
+        <div class="handoff-preview-wrapper">
+          <div class="bento-container">
+            <div class="bento-grid">
+              <!-- Patient Card -->
+              <div class="bento-card" id="bento-patient">
+                <div class="mini-ui-header">
+                  <div class="mini-ui-title">
+                    <img src="Birth_Model_Logo.png" alt="">
+                    Nursing Handoff
+                  </div>
+                  <div class="mini-ui-badge">LIVE</div>
+                </div>
+                <div class="mini-ui-body">
+                  <div class="patient-mini">
+                    <div class="patient-avatar">
+                      <div class="patient-avatar-inner"></div>
+                    </div>
+                    <div class="patient-info">
+                      <div class="patient-name-bar"></div>
+                      <div class="patient-detail-bars">
+                        <div class="patient-detail-bar" style="width: 50px;"></div>
+                        <div class="patient-detail-bar" style="width: 35px;"></div>
+                        <div class="patient-detail-bar" style="width: 40px;"></div>
+                      </div>
+                    </div>
+                    <div class="patient-tags">
+                      <div class="patient-tag green"></div>
+                      <div class="patient-tag yellow"></div>
+                      <div class="patient-tag red"></div>
+                    </div>
+                  </div>
+                  <div class="data-grid">
+                    <div class="data-cell alert" id="dc-1">
+                      <div class="data-label">Vitals</div>
+                      <div class="data-value-bar" style="width: 70%;"></div>
+                    </div>
+                    <div class="data-cell good" id="dc-2">
+                      <div class="data-label">Labs</div>
+                      <div class="data-value-bar" style="width: 85%;"></div>
+                    </div>
+                    <div class="data-cell" id="dc-3">
+                      <div class="data-label">Meds</div>
+                      <div class="data-value-bar" style="width: 60%;"></div>
+                    </div>
+                    <div class="data-cell" id="dc-4">
+                      <div class="data-label">I/O</div>
+                      <div class="data-value-bar" style="width: 50%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SBAR Card -->
+              <div class="bento-card" id="bento-sbar" style="position: relative;">
+                <div class="ai-sparkle">AI Generated</div>
+                <div class="mini-ui-header" style="background: linear-gradient(135deg, #f3f0ff, #ede7ff);">
+                  <div class="mini-ui-title" style="color: #5c6bc0;">SBAR Report</div>
+                </div>
+                <div class="mini-ui-body">
+                  <div class="sbar-mini-section" id="sbar-s">
+                    <div class="sbar-label s">S</div>
+                    <div class="sbar-content-bars">
+                      <div class="sbar-bar" style="width: 100%;"></div>
+                      <div class="sbar-bar" style="width: 80%;"></div>
+                    </div>
+                  </div>
+                  <div class="sbar-mini-section" id="sbar-b">
+                    <div class="sbar-label b">B</div>
+                    <div class="sbar-content-bars">
+                      <div class="sbar-bar" style="width: 90%;"></div>
+                      <div class="sbar-bar" style="width: 70%;"></div>
+                    </div>
+                  </div>
+                  <div class="sbar-mini-section" id="sbar-a">
+                    <div class="sbar-label a">A</div>
+                    <div class="sbar-content-bars">
+                      <div class="sbar-bar" style="width: 85%;"></div>
+                    </div>
+                  </div>
+                  <div class="sbar-mini-section" id="sbar-r">
+                    <div class="sbar-label r">R</div>
+                    <div class="sbar-content-bars">
+                      <div class="sbar-bar" style="width: 95%;"></div>
+                      <div class="sbar-bar" style="width: 60%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actions Card -->
+              <div class="bento-card large" id="bento-actions">
+                <div class="mini-ui-header" style="background: linear-gradient(135deg, #e8f4f3, #d4ecea);">
+                  <div class="mini-ui-title" style="color: var(--bm-dark-teal);">Export & Sync</div>
+                  <div class="mini-ui-badge" style="background: var(--bm-dark-teal); color: white;">1-CLICK</div>
+                </div>
+                <div class="mini-ui-body">
+                  <div class="action-row">
+                    <div class="action-btn primary" id="btn-epic">
+                      <img src="Epic_Logo.png" alt="Epic" style="height: 14px; filter: brightness(0) invert(1);">
+                      Sync to Epic
+                    </div>
+                    <div class="action-btn secondary" id="btn-print">
+                      <span>🖨️</span>
+                      Print Report
+                    </div>
+                    <div class="action-btn secondary" id="btn-share">
+                      <span>📱</span>
+                      Send to Mobile
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flow Lines SVG -->
+            <svg class="flow-connector" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+              <path class="flow-line" d="M 50% 180 Q 50% 200, 50% 220" />
+              <circle class="flow-dot" cx="50%" cy="200" r="4" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="handoff-progress">
+        <div class="handoff-progress-fill" id="handoff-progress-fill"></div>
+      </div>
+    </div>
+
+    <script>
+      // Scroll-Driven Handoff Animation
+      document.addEventListener('DOMContentLoaded', function() {
+        const section = document.getElementById('handoff-section');
+        const bentoCards = {
+          patient: document.getElementById('bento-patient'),
+          sbar: document.getElementById('bento-sbar'),
+          actions: document.getElementById('bento-actions')
+        };
+        const steps = document.querySelectorAll('.handoff-step');
+        const progressFill = document.getElementById('handoff-progress-fill');
+        const sbarSections = document.querySelectorAll('.sbar-mini-section');
+
+        let currentStep = 0;
+        let hasInitialized = false;
+
+        // Initialize cards as visible
+        function initializeCards() {
+          if (hasInitialized) return;
+          hasInitialized = true;
+          Object.values(bentoCards).forEach((card, i) => {
+            setTimeout(() => {
+              if (card) card.classList.add('visible');
+            }, i * 150);
+          });
+        }
+
+        function updateHandoffState(progress) {
+          // Update progress bar
+          if (progressFill) {
+            progressFill.style.width = (progress * 100) + '%';
+          }
+
+          // Determine current step based on progress
+          let newStep;
+          if (progress < 0.33) {
+            newStep = 1;
+          } else if (progress < 0.66) {
+            newStep = 2;
+          } else {
+            newStep = 3;
+          }
+
+          if (newStep !== currentStep) {
+            currentStep = newStep;
+            updateStepIndicators();
+            updateCardHighlights();
+          }
+        }
+
+        function updateStepIndicators() {
+          steps.forEach((step, i) => {
+            const stepNum = i + 1;
+            step.classList.remove('active', 'completed');
+            if (stepNum < currentStep) {
+              step.classList.add('completed');
+            } else if (stepNum === currentStep) {
+              step.classList.add('active');
+            }
+          });
+        }
+
+        function updateCardHighlights() {
+          // Clear all states
+          Object.values(bentoCards).forEach(card => {
+            if (card) {
+              card.classList.remove('step-highlight', 'step-dim', 'step-complete');
+            }
+          });
+
+          // Apply new states based on current step
+          if (currentStep === 1) {
+            if (bentoCards.patient) bentoCards.patient.classList.add('step-highlight');
+            if (bentoCards.sbar) bentoCards.sbar.classList.add('step-dim');
+            if (bentoCards.actions) bentoCards.actions.classList.add('step-dim');
+          } else if (currentStep === 2) {
+            if (bentoCards.patient) bentoCards.patient.classList.add('step-complete');
+            if (bentoCards.sbar) bentoCards.sbar.classList.add('step-highlight');
+            if (bentoCards.actions) bentoCards.actions.classList.add('step-dim');
+            // Animate SBAR sections
+            sbarSections.forEach((s, i) => {
+              setTimeout(() => s.classList.add('visible'), i * 150);
+            });
+          } else if (currentStep === 3) {
+            if (bentoCards.patient) bentoCards.patient.classList.add('step-complete');
+            if (bentoCards.sbar) bentoCards.sbar.classList.add('step-complete');
+            if (bentoCards.actions) bentoCards.actions.classList.add('step-highlight');
+          }
+        }
+
+        // Reset handoff section to initial state
+        function resetHandoffSection() {
+          currentStep = 0;
+          hasInitialized = false;
+
+          // Reset progress bar
+          if (progressFill) progressFill.style.width = '0%';
+
+          // Reset step indicators
+          steps.forEach(step => step.classList.remove('active', 'completed'));
+
+          // Reset card states
+          Object.values(bentoCards).forEach(card => {
+            if (card) {
+              card.classList.remove('visible', 'step-highlight', 'step-dim', 'step-complete');
+            }
+          });
+
+          // Reset SBAR sections
+          sbarSections.forEach(s => s.classList.remove('visible'));
+        }
+
+        // Scroll handler
+        function handleScroll() {
+          if (!section) return;
+
+          const rect = section.getBoundingClientRect();
+          const sectionTop = rect.top;
+          const sectionHeight = rect.height;
+          const viewportHeight = window.innerHeight;
+
+          // Reset if section is below viewport (scrolled back up past it)
+          if (sectionTop > viewportHeight + 100) {
+            resetHandoffSection();
+            return;
+          }
+
+          // Check if section is in view
+          if (sectionTop < viewportHeight && rect.bottom > 0) {
+            initializeCards();
+
+            // Calculate scroll progress within section
+            const scrollStart = sectionTop - viewportHeight;
+            const scrollEnd = rect.bottom - viewportHeight;
+            const scrollRange = sectionHeight - viewportHeight;
+
+            if (scrollRange > 0) {
+              const progress = Math.max(0, Math.min(1, -sectionTop / scrollRange));
+              updateHandoffState(progress);
+            }
+          }
+        }
+
+        // Throttled scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              handleScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+
+        // Initial check
+        handleScroll();
+
+        // Button hover animations
+        document.querySelectorAll('.action-btn').forEach(btn => {
+          btn.addEventListener('mouseenter', () => {
+            btn.style.transform = 'translateY(-4px) scale(1.03)';
+            btn.style.boxShadow = '0 12px 30px rgba(255, 118, 96, 0.35)';
+          });
+          btn.addEventListener('mouseleave', () => {
+            btn.style.transform = '';
+            btn.style.boxShadow = '';
+          });
+        });
+      });
+    </script>
+  </section>
+
+  <!-- Electronic Booking System - Scroll-Driven -->
+  <section class="feature-section booking-scroll-section" id="booking-section">
+    <style>
+      .booking-scroll-section {
+        min-height: 220vh;
+        position: relative;
+        padding: 0 !important;
+        background: linear-gradient(180deg, #f8fafa 0%, white 50%, #f8fafa 100%);
+      }
+      /* Full-width background gradient that extends to edges */
+      .booking-scroll-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(ellipse 80% 50% at 15% 50%, rgba(171, 223, 226, 0.4) 0%, transparent 50%),
+          radial-gradient(ellipse 60% 40% at 85% 30%, rgba(255, 118, 96, 0.15) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .booking-sticky-container {
+        position: sticky;
+        top: 80px;
+        height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        z-index: 1;
+      }
+      .booking-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 30px;
+        align-items: center;
+        max-width: 1200px;
+        width: 100%;
+      }
+      .booking-content h2 {
+        font-size: 32px;
+        font-weight: 900;
+        color: var(--bm-dark-teal);
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      .booking-content p {
+        font-size: 16px;
+        color: var(--bm-gray);
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+
+      /* Step Indicators for Booking */
+      .booking-steps {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .booking-step {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        background: #f0f4f4;
+        border-radius: 16px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--bm-gray);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0.5;
+      }
+      .booking-step.active {
+        background: var(--bm-dark-teal);
+        color: white;
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      .booking-step.completed {
+        background: #22c55e;
+        color: white;
+        opacity: 1;
+      }
+      .booking-step-num {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+      }
+
+      .booking-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .booking-features li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 0;
+        font-size: 14px;
+        color: var(--bm-gray);
+        line-height: 1.4;
+      }
+      .booking-features .check-icon {
+        color: #22c55e;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-size: 14px;
+      }
+      .booking-features strong {
+        color: var(--bm-dark-teal);
+      }
+      .booking-preview-wrapper {
+        position: relative;
+        min-height: 540px;
+        margin-bottom: 20px;
+      }
+
+      /* Booking Progress bar */
+      .booking-progress {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 4px;
+        background: #e5e7eb;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .booking-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--bm-teal), var(--bm-coral));
+        border-radius: 2px;
+        transition: width 0.3s ease;
+        width: 0%;
+      }
+
+      /* Booking Bento Styles */
+      .booking-bento {
+        position: relative;
+        width: 100%;
+        min-height: 520px;
+        padding-bottom: 20px;
+      }
+      .booking-bento-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        grid-template-rows: auto auto auto;
+        gap: 14px;
+        height: 100%;
+      }
+      .booking-bento-card {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(30, 61, 60, 0.08);
+        box-shadow: 0 8px 32px rgba(30, 61, 60, 0.08), 0 2px 8px rgba(0,0,0,0.04);
+        overflow: visible;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      .booking-bento-card.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .booking-bento-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(30, 61, 60, 0.12), 0 4px 12px rgba(0,0,0,0.06);
+      }
+      .booking-bento-card.tall {
+        grid-row: span 2;
+      }
+      .booking-bento-card.wide {
+        grid-column: span 2;
+      }
+
+      /* Scroll-driven card states for booking */
+      .booking-bento-card.step-highlight {
+        transform: scale(1.02);
+        box-shadow: 0 25px 80px rgba(30, 61, 60, 0.2), 0 8px 24px rgba(0,0,0,0.1);
+        border-color: var(--bm-coral);
+        z-index: 10;
+      }
+      .booking-bento-card.step-dim {
+        opacity: 0.4;
+        filter: grayscale(0.3);
+      }
+      .booking-bento-card.step-complete {
+        border-color: #22c55e;
+        position: relative;
+      }
+      .booking-bento-card.step-complete::after {
+        content: '✓';
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 24px;
+        height: 24px;
+        background: #22c55e;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 20;
+      }
+
+      /* Calendar UI */
+      .calendar-mini {
+        padding: 16px;
+      }
+      .calendar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .calendar-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--bm-dark-teal);
+      }
+      .calendar-nav {
+        display: flex;
+        gap: 8px;
+      }
+      .calendar-nav-btn {
+        width: 24px;
+        height: 24px;
+        background: var(--bm-teal-light);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: var(--bm-dark-teal);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .calendar-nav-btn:hover {
+        background: var(--bm-teal);
+      }
+      .calendar-days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        margin-bottom: 8px;
+      }
+      .calendar-day-label {
+        font-size: 8px;
+        font-weight: 700;
+        color: var(--bm-gray);
+        text-align: center;
+        padding: 4px;
+      }
+      .calendar-dates {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+      }
+      .calendar-date {
+        aspect-ratio: 1;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--bm-gray);
+        transition: all 0.2s;
+        position: relative;
+      }
+      .calendar-date.available {
+        background: #f0fdf4;
+        color: #16a34a;
+        cursor: pointer;
+      }
+      .calendar-date.available:hover {
+        background: #dcfce7;
+        transform: scale(1.1);
+      }
+      .calendar-date.limited {
+        background: #fef3c7;
+        color: #b45309;
+      }
+      .calendar-date.full {
+        background: #fee2e2;
+        color: #dc2626;
+      }
+      .calendar-date.selected {
+        background: linear-gradient(135deg, var(--bm-coral), #ff8a70);
+        color: white;
+        box-shadow: 0 6px 20px rgba(255, 118, 96, 0.5);
+        animation: selectPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 5;
+      }
+      @keyframes selectPop {
+        0% { transform: scale(0.7); opacity: 0.5; }
+        60% { transform: scale(1.2); }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .calendar-date {
+        transition: all 0.3s ease;
+      }
+      .calendar-date .dot {
+        position: absolute;
+        bottom: 2px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      /* Slot List */
+      .slot-list {
+        padding: 14px;
+      }
+      .slot-list-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .slot-list-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--bm-dark-teal);
+      }
+      .slot-count-badge {
+        background: var(--bm-teal);
+        color: var(--bm-dark-teal);
+        font-size: 9px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+      .slot-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background: #f8fafa;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      .slot-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .slot-item:hover {
+        background: var(--bm-teal-light);
+        transform: translateX(6px);
+        box-shadow: 0 4px 15px rgba(30, 61, 60, 0.1);
+      }
+      .slot-item {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .slot-time {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--bm-dark-teal);
+        min-width: 55px;
+      }
+      .slot-bar-container {
+        flex: 1;
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .slot-bar {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.5s ease;
+      }
+      .slot-bar.green { background: linear-gradient(90deg, #22c55e, #4ade80); }
+      .slot-bar.yellow { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+      .slot-bar.red { background: linear-gradient(90deg, #ef4444, #f87171); }
+      .slot-status {
+        font-size: 9px;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
+      .slot-status.open { background: #dcfce7; color: #16a34a; }
+      .slot-status.limited { background: #fef3c7; color: #b45309; }
+      .slot-status.full { background: #fee2e2; color: #dc2626; }
+
+      /* AI Prediction Card */
+      .ai-predict-card {
+        background: linear-gradient(135deg, var(--bm-dark-teal), #2d5a58);
+        padding: 16px;
+        position: relative;
+        overflow: hidden;
+      }
+      .ai-predict-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(171, 223, 226, 0.2) 0%, transparent 60%);
+        animation: glowPulse 4s ease-in-out infinite;
+      }
+      @keyframes glowPulse {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.2); }
+      }
+      .ai-predict-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        position: relative;
+        z-index: 1;
+      }
+      .ai-predict-header span {
+        font-size: 11px;
+        font-weight: 700;
+        color: white;
+      }
+      .ai-badge-glow {
+        background: linear-gradient(135deg, #5c6bc0, #7c4dff);
+        color: white;
+        font-size: 8px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 8px;
+        margin-left: auto;
+        box-shadow: 0 0 20px rgba(92, 107, 192, 0.5);
+      }
+      .ai-gauge {
+        position: relative;
+        width: 100%;
+        height: 60px;
+        margin-bottom: 12px;
+        z-index: 1;
+      }
+      .ai-gauge-bg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      .ai-gauge-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--bm-teal), #7ec8cb, var(--bm-coral));
+        border-radius: 15px;
+        transition: width 1s ease;
+      }
+      .ai-gauge-marker {
+        position: absolute;
+        bottom: 25px;
+        width: 3px;
+        height: 40px;
+        background: white;
+        border-radius: 2px;
+        transform: translateX(-50%);
+        box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        transition: left 1s ease;
+      }
+      .ai-gauge-label {
+        position: absolute;
+        bottom: 68px;
+        background: white;
+        color: var(--bm-dark-teal);
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 8px;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+      .ai-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        position: relative;
+        z-index: 1;
+      }
+      .ai-stat {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+      }
+      .ai-stat-value {
+        font-size: 14px;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 2px;
+      }
+      .ai-stat-label {
+        font-size: 8px;
+        color: rgba(255,255,255,0.7);
+        text-transform: uppercase;
+      }
+
+      /* Spin animation for Epic sync */
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Confirmation Card */
+      .confirm-card {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .confirm-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .confirm-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #22c55e, #4ade80);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+      }
+      .confirm-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--bm-dark-teal);
+      }
+      .confirm-subtitle {
+        font-size: 9px;
+        color: var(--bm-gray);
+      }
+      .confirm-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .confirm-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .confirm-row-icon {
+        width: 24px;
+        height: 24px;
+        background: var(--bm-teal-light);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+      }
+      .confirm-row-bar {
+        flex: 1;
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 4px;
+      }
+      .confirm-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .confirm-btn {
+        flex: 1;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 700;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .confirm-btn.primary {
+        background: linear-gradient(135deg, var(--bm-coral), #ff8a70);
+        color: white;
+        box-shadow: 0 4px 12px rgba(255, 118, 96, 0.3);
+      }
+      .confirm-btn.secondary {
+        background: white;
+        color: var(--bm-dark-teal);
+        border: 2px solid var(--bm-teal);
+      }
+      .confirm-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 900px) {
+        .booking-scroll-section {
+          min-height: auto;
+        }
+        .booking-sticky-container {
+          position: relative;
+          top: 0;
+          height: auto;
+          padding: 60px 20px;
+        }
+        .booking-grid {
+          grid-template-columns: 1fr;
+        }
+        .booking-steps {
+          flex-wrap: wrap;
+        }
+        .booking-preview-wrapper {
+          order: -1;
+        }
+        .booking-bento-grid {
+          grid-template-columns: 1fr;
+        }
+        .booking-bento-card.tall {
+          grid-row: span 1;
+        }
+        .booking-bento-card.wide {
+          grid-column: span 1;
+        }
+        .booking-progress {
+          display: none;
+        }
+      }
+    </style>
+
+    <div class="booking-sticky-container">
+      <div class="booking-grid">
+        <!-- Booking Bento UI -->
+        <div class="booking-preview-wrapper">
+          <div class="booking-bento">
+            <div class="booking-bento-grid">
+              <!-- Calendar Card -->
+              <div class="booking-bento-card" id="bento-calendar">
+                <div class="calendar-mini">
+                  <div class="calendar-header">
+                    <div class="calendar-title">January 2025</div>
+                    <div class="calendar-nav">
+                      <div class="calendar-nav-btn">‹</div>
+                      <div class="calendar-nav-btn">›</div>
+                    </div>
+                  </div>
+                  <div class="calendar-days">
+                    <div class="calendar-day-label">S</div>
+                    <div class="calendar-day-label">M</div>
+                    <div class="calendar-day-label">T</div>
+                    <div class="calendar-day-label">W</div>
+                    <div class="calendar-day-label">T</div>
+                    <div class="calendar-day-label">F</div>
+                    <div class="calendar-day-label">S</div>
+                  </div>
+                  <div class="calendar-dates" id="calendar-dates">
+                    <div class="calendar-date"></div>
+                    <div class="calendar-date"></div>
+                    <div class="calendar-date"></div>
+                    <div class="calendar-date available">1</div>
+                    <div class="calendar-date available">2<span class="dot"></span></div>
+                    <div class="calendar-date limited">3</div>
+                    <div class="calendar-date full">4</div>
+                    <div class="calendar-date full">5</div>
+                    <div class="calendar-date available">6</div>
+                    <div class="calendar-date available">7<span class="dot"></span></div>
+                    <div class="calendar-date limited">8</div>
+                    <div class="calendar-date full">9</div>
+                    <div class="calendar-date full">10</div>
+                    <div class="calendar-date full">11</div>
+                    <div class="calendar-date available selected">12</div>
+                    <div class="calendar-date available">13<span class="dot"></span></div>
+                    <div class="calendar-date limited">14</div>
+                    <div class="calendar-date full">15</div>
+                    <div class="calendar-date full">16</div>
+                    <div class="calendar-date available">17</div>
+                    <div class="calendar-date available">18</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slots Card -->
+              <div class="booking-bento-card tall" id="bento-slots">
+                <div class="slot-list">
+                  <div class="slot-list-header">
+                    <div class="slot-list-title">Time Slots</div>
+                    <div class="slot-count-badge">6 Open</div>
+                  </div>
+                  <div class="slot-item" id="slot-1">
+                    <div class="slot-time">6:00 AM</div>
+                    <div class="slot-bar-container"><div class="slot-bar green" style="width: 80%;"></div></div>
+                    <div class="slot-status open">Open</div>
+                  </div>
+                  <div class="slot-item" id="slot-2">
+                    <div class="slot-time">8:00 AM</div>
+                    <div class="slot-bar-container"><div class="slot-bar yellow" style="width: 40%;"></div></div>
+                    <div class="slot-status limited">1 Left</div>
+                  </div>
+                  <div class="slot-item" id="slot-3">
+                    <div class="slot-time">10:00 AM</div>
+                    <div class="slot-bar-container"><div class="slot-bar red" style="width: 0%;"></div></div>
+                    <div class="slot-status full">Full</div>
+                  </div>
+                  <div class="slot-item" id="slot-4">
+                    <div class="slot-time">12:00 PM</div>
+                    <div class="slot-bar-container"><div class="slot-bar green" style="width: 60%;"></div></div>
+                    <div class="slot-status open">Open</div>
+                  </div>
+                  <div class="slot-item" id="slot-5">
+                    <div class="slot-time">2:00 PM</div>
+                    <div class="slot-bar-container"><div class="slot-bar yellow" style="width: 20%;"></div></div>
+                    <div class="slot-status limited">1 Left</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Prediction Card -->
+              <div class="booking-bento-card" id="bento-ai">
+                <div class="ai-predict-card">
+                  <div class="ai-predict-header">
+                    <span>AI Delivery Prediction</span>
+                    <div class="ai-badge-glow">LIVE</div>
+                  </div>
+                  <div class="ai-gauge">
+                    <div class="ai-gauge-label" id="gauge-label" style="left: 65%;">Est. 4:30 PM</div>
+                    <div class="ai-gauge-marker" id="gauge-marker" style="left: 65%;"></div>
+                    <div class="ai-gauge-bg">
+                      <div class="ai-gauge-fill" id="gauge-fill" style="width: 65%;"></div>
+                    </div>
+                  </div>
+                  <div class="ai-stats">
+                    <div class="ai-stat">
+                      <div class="ai-stat-value">94%</div>
+                      <div class="ai-stat-label">Confidence</div>
+                    </div>
+                    <div class="ai-stat">
+                      <div class="ai-stat-value">±38m</div>
+                      <div class="ai-stat-label">Window</div>
+                    </div>
+                    <div class="ai-stat">
+                      <div class="ai-stat-value">7</div>
+                      <div class="ai-stat-label">Bishop</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Confirmation Card -->
+              <div class="booking-bento-card" id="bento-confirm">
+                <div class="confirm-card">
+                  <div class="confirm-header">
+                    <div class="confirm-icon">✓</div>
+                    <div>
+                      <div class="confirm-title">Booking Ready</div>
+                      <div class="confirm-subtitle">All details captured</div>
+                    </div>
+                  </div>
+                  <div class="confirm-details">
+                    <div class="confirm-row">
+                      <div class="confirm-row-icon">📅</div>
+                      <div class="confirm-row-bar" style="background: linear-gradient(90deg, var(--bm-teal), transparent);"></div>
+                    </div>
+                    <div class="confirm-row">
+                      <div class="confirm-row-icon">⏰</div>
+                      <div class="confirm-row-bar" style="background: linear-gradient(90deg, var(--bm-teal), transparent); width: 80%;"></div>
+                    </div>
+                    <div class="confirm-row">
+                      <div class="confirm-row-icon">📋</div>
+                      <div class="confirm-row-bar" style="background: linear-gradient(90deg, #22c55e, transparent); width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="confirm-actions">
+                    <div class="confirm-btn primary">Confirm</div>
+                    <div class="confirm-btn secondary">Edit</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="booking-content">
+          <div class="booking-steps">
+            <div class="booking-step active" data-step="1">
+              <span class="booking-step-num">1</span>
+              Select Date
+            </div>
+            <div class="booking-step" data-step="2">
+              <span class="booking-step-num">2</span>
+              View Slots
+            </div>
+            <div class="booking-step" data-step="3">
+              <span class="booking-step-num">3</span>
+              AI Prediction
+            </div>
+            <div class="booking-step" data-step="4">
+              <span class="booking-step-num">4</span>
+              Confirm
+            </div>
+          </div>
+          <h2>Electronic Booking System</h2>
+          <p>Schedule inductions and C-sections with real-time availability and AI predictions.</p>
+          <ul class="booking-features">
+            <li><span class="check-icon">✓</span> <strong>Real-Time Slots:</strong> See open availability</li>
+            <li><span class="check-icon">✓</span> <strong>AI Predictions:</strong> ETA based on Bishop score</li>
+            <li><span class="check-icon">✓</span> <strong>Auto ICD-10:</strong> Codes from EHR</li>
+            <li><span class="check-icon">✓</span> <strong>Epic Sync:</strong> Push bookings directly</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="booking-progress">
+        <div class="booking-progress-fill" id="booking-progress-fill"></div>
+      </div>
+    </div>
+
+    <script>
+      // Scroll-Driven Booking Animation
+      document.addEventListener('DOMContentLoaded', function() {
+        const section = document.getElementById('booking-section');
+        const bentoCards = {
+          calendar: document.getElementById('bento-calendar'),
+          slots: document.getElementById('bento-slots'),
+          ai: document.getElementById('bento-ai'),
+          confirm: document.getElementById('bento-confirm')
+        };
+        const steps = document.querySelectorAll('.booking-step');
+        const progressFill = document.getElementById('booking-progress-fill');
+        const slotItems = document.querySelectorAll('.slot-item');
+        const calendarDates = document.querySelectorAll('.calendar-date.available, .calendar-date.limited');
+        const confirmIcon = document.querySelector('.confirm-icon');
+        const confirmTitle = document.querySelector('.confirm-title');
+        const confirmSubtitle = document.querySelector('.confirm-subtitle');
+        const confirmBtn = document.querySelector('.confirm-btn.primary');
+
+        let currentStep = 0;
+        let hasInitialized = false;
+        let lastStep = 0;
+
+        // Initialize cards as visible
+        function initializeCards() {
+          if (hasInitialized) return;
+          hasInitialized = true;
+          Object.values(bentoCards).forEach((card, i) => {
+            setTimeout(() => {
+              if (card) card.classList.add('visible');
+            }, i * 120);
+          });
+          // Show slot items
+          slotItems.forEach((item, i) => {
+            setTimeout(() => item.classList.add('visible'), 300 + i * 80);
+          });
+        }
+
+        function updateBookingState(progress) {
+          // Update progress bar
+          if (progressFill) {
+            progressFill.style.width = (progress * 100) + '%';
+          }
+
+          // Determine current step based on progress (4 steps)
+          let newStep;
+          if (progress < 0.25) {
+            newStep = 1;
+          } else if (progress < 0.5) {
+            newStep = 2;
+          } else if (progress < 0.75) {
+            newStep = 3;
+          } else {
+            newStep = 4;
+          }
+
+          if (newStep !== currentStep) {
+            currentStep = newStep;
+            updateStepIndicators();
+            updateCardHighlights();
+            triggerStepAnimations();
+          }
+        }
+
+        function updateStepIndicators() {
+          steps.forEach((step, i) => {
+            const stepNum = i + 1;
+            step.classList.remove('active', 'completed');
+            if (stepNum < currentStep) {
+              step.classList.add('completed');
+            } else if (stepNum === currentStep) {
+              step.classList.add('active');
+            }
+          });
+        }
+
+        function updateCardHighlights() {
+          // Clear all states
+          Object.values(bentoCards).forEach(card => {
+            if (card) {
+              card.classList.remove('step-highlight', 'step-dim', 'step-complete');
+            }
+          });
+
+          // Apply new states based on current step
+          if (currentStep === 1) {
+            // Calendar highlighted
+            if (bentoCards.calendar) bentoCards.calendar.classList.add('step-highlight');
+            if (bentoCards.slots) bentoCards.slots.classList.add('step-dim');
+            if (bentoCards.ai) bentoCards.ai.classList.add('step-dim');
+            if (bentoCards.confirm) bentoCards.confirm.classList.add('step-dim');
+          } else if (currentStep === 2) {
+            // Slots highlighted
+            if (bentoCards.calendar) bentoCards.calendar.classList.add('step-complete');
+            if (bentoCards.slots) bentoCards.slots.classList.add('step-highlight');
+            if (bentoCards.ai) bentoCards.ai.classList.add('step-dim');
+            if (bentoCards.confirm) bentoCards.confirm.classList.add('step-dim');
+          } else if (currentStep === 3) {
+            // AI highlighted
+            if (bentoCards.calendar) bentoCards.calendar.classList.add('step-complete');
+            if (bentoCards.slots) bentoCards.slots.classList.add('step-complete');
+            if (bentoCards.ai) bentoCards.ai.classList.add('step-highlight');
+            if (bentoCards.confirm) bentoCards.confirm.classList.add('step-dim');
+          } else if (currentStep === 4) {
+            // Confirm highlighted
+            if (bentoCards.calendar) bentoCards.calendar.classList.add('step-complete');
+            if (bentoCards.slots) bentoCards.slots.classList.add('step-complete');
+            if (bentoCards.ai) bentoCards.ai.classList.add('step-complete');
+            if (bentoCards.confirm) bentoCards.confirm.classList.add('step-highlight');
+          }
+        }
+
+        function triggerStepAnimations() {
+          const goingForward = currentStep > lastStep;
+
+          // Step-specific animations
+          if (currentStep === 1) {
+            // Animate calendar date selection
+            const available = Array.from(calendarDates);
+            if (available.length > 0) {
+              const current = document.querySelector('.calendar-date.selected');
+              if (current) current.classList.remove('selected');
+              if (goingForward) {
+                available[Math.floor(Math.random() * available.length)].classList.add('selected');
+              }
+            }
+            // Reset gauge if going back to step 1
+            const gaugeFill = document.getElementById('gauge-fill');
+            const gaugeMarker = document.getElementById('gauge-marker');
+            const gaugeLabel = document.getElementById('gauge-label');
+            if (gaugeFill) gaugeFill.style.width = '0%';
+            if (gaugeMarker) gaugeMarker.style.left = '0%';
+            if (gaugeLabel) {
+              gaugeLabel.style.left = '0%';
+              gaugeLabel.textContent = 'Calculating...';
+            }
+            // Reset confirmation
+            if (confirmIcon) {
+              confirmIcon.style.background = '';
+              confirmIcon.textContent = '📅';
+            }
+            if (confirmTitle) confirmTitle.textContent = 'Confirm Appointment';
+            if (confirmSubtitle) confirmSubtitle.textContent = 'Review and finalize your booking';
+            if (confirmBtn) {
+              confirmBtn.textContent = 'Confirm';
+              confirmBtn.style.background = '';
+            }
+          }
+
+          if (currentStep === 2) {
+            // Animate slot items
+            if (goingForward) {
+              slotItems.forEach((item, i) => {
+                item.style.transform = 'translateX(-10px)';
+                item.style.opacity = '0.5';
+                setTimeout(() => {
+                  item.style.transition = 'all 0.4s ease';
+                  item.style.transform = 'translateX(0)';
+                  item.style.opacity = '1';
+                }, i * 100);
+              });
+            }
+            // Reset gauge if going back to step 2
+            const gaugeFill = document.getElementById('gauge-fill');
+            const gaugeMarker = document.getElementById('gauge-marker');
+            const gaugeLabel = document.getElementById('gauge-label');
+            if (gaugeFill) gaugeFill.style.width = '0%';
+            if (gaugeMarker) gaugeMarker.style.left = '0%';
+            if (gaugeLabel) {
+              gaugeLabel.style.left = '0%';
+              gaugeLabel.textContent = 'Calculating...';
+            }
+            // Reset confirmation
+            if (confirmIcon) {
+              confirmIcon.style.background = '';
+              confirmIcon.textContent = '📅';
+            }
+            if (confirmTitle) confirmTitle.textContent = 'Confirm Appointment';
+            if (confirmSubtitle) confirmSubtitle.textContent = 'Review and finalize your booking';
+            if (confirmBtn) {
+              confirmBtn.textContent = 'Confirm';
+              confirmBtn.style.background = '';
+            }
+          }
+
+          if (currentStep === 3) {
+            // Animate AI gauge
+            const gaugeFill = document.getElementById('gauge-fill');
+            const gaugeMarker = document.getElementById('gauge-marker');
+            const gaugeLabel = document.getElementById('gauge-label');
+            if (goingForward) {
+              if (gaugeFill) {
+                gaugeFill.style.transition = 'width 1s ease';
+                gaugeFill.style.width = '72%';
+              }
+              if (gaugeMarker) {
+                gaugeMarker.style.transition = 'left 1s ease';
+                gaugeMarker.style.left = '72%';
+              }
+              if (gaugeLabel) {
+                gaugeLabel.style.transition = 'left 1s ease';
+                gaugeLabel.style.left = '72%';
+                gaugeLabel.textContent = 'Est. 4:15 PM';
+              }
+            }
+            // Reset confirmation if going back to step 3
+            if (confirmIcon) {
+              confirmIcon.style.background = '';
+              confirmIcon.textContent = '📅';
+            }
+            if (confirmTitle) confirmTitle.textContent = 'Confirm Appointment';
+            if (confirmSubtitle) confirmSubtitle.textContent = 'Review and finalize your booking';
+            if (confirmBtn) {
+              confirmBtn.textContent = 'Confirm';
+              confirmBtn.style.background = '';
+            }
+          }
+
+          if (currentStep === 4 && goingForward) {
+            // Animate confirmation
+            if (confirmIcon) {
+              confirmIcon.style.background = 'linear-gradient(135deg, #22c55e, #4ade80)';
+              confirmIcon.textContent = '✓';
+            }
+            if (confirmTitle) confirmTitle.textContent = 'Booking Confirmed!';
+            if (confirmSubtitle) confirmSubtitle.textContent = 'Synced to Epic • ID: EP-48291';
+            if (confirmBtn) {
+              confirmBtn.textContent = 'Done';
+              confirmBtn.style.background = 'linear-gradient(135deg, #22c55e, #4ade80)';
+            }
+          }
+
+          lastStep = currentStep;
+        }
+
+        // Reset booking section to initial state
+        function resetBookingSection() {
+          currentStep = 0;
+          lastStep = 0;
+          hasInitialized = false;
+
+          // Reset progress bar
+          if (progressFill) progressFill.style.width = '0%';
+
+          // Reset step indicators
+          steps.forEach(step => step.classList.remove('active', 'completed'));
+
+          // Reset card states
+          Object.values(bentoCards).forEach(card => {
+            if (card) {
+              card.classList.remove('visible', 'step-highlight', 'step-dim', 'step-complete');
+            }
+          });
+
+          // Reset slot items
+          slotItems.forEach(item => {
+            item.classList.remove('visible', 'selected');
+          });
+
+          // Reset calendar
+          calendarDates.forEach(date => date.classList.remove('selected'));
+
+          // Reset AI gauge
+          const gaugeFill = document.getElementById('gauge-fill');
+          const gaugeMarker = document.getElementById('gauge-marker');
+          const gaugeLabel = document.getElementById('gauge-label');
+          if (gaugeFill) gaugeFill.style.width = '0%';
+          if (gaugeMarker) gaugeMarker.style.left = '0%';
+          if (gaugeLabel) {
+            gaugeLabel.style.left = '0%';
+            gaugeLabel.textContent = 'Calculating...';
+          }
+
+          // Reset confirmation
+          if (confirmIcon) {
+            confirmIcon.style.background = '';
+            confirmIcon.textContent = '📅';
+          }
+          if (confirmTitle) confirmTitle.textContent = 'Confirm Appointment';
+          if (confirmSubtitle) confirmSubtitle.textContent = 'Review and finalize your booking';
+          if (confirmBtn) {
+            confirmBtn.textContent = 'Confirm';
+            confirmBtn.style.background = '';
+          }
+        }
+
+        // Scroll handler
+        function handleScroll() {
+          if (!section) return;
+
+          const rect = section.getBoundingClientRect();
+          const sectionTop = rect.top;
+          const sectionHeight = rect.height;
+          const viewportHeight = window.innerHeight;
+
+          // Reset if section is below viewport (scrolled back up past it)
+          if (sectionTop > viewportHeight + 100) {
+            resetBookingSection();
+            return;
+          }
+
+          // Check if section is in view
+          if (sectionTop < viewportHeight && rect.bottom > 0) {
+            initializeCards();
+
+            // Calculate scroll progress within section
+            const scrollRange = sectionHeight - viewportHeight;
+
+            if (scrollRange > 0) {
+              const progress = Math.max(0, Math.min(1, -sectionTop / scrollRange));
+              updateBookingState(progress);
+            }
+          }
+        }
+
+        // Throttled scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              handleScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+
+        // Initial check
+        handleScroll();
+
+        // Hover effects for confirm buttons
+        document.querySelectorAll('.confirm-btn').forEach(btn => {
+          btn.addEventListener('mouseenter', () => {
+            btn.style.transform = 'translateY(-4px) scale(1.03)';
+            btn.style.boxShadow = '0 12px 30px rgba(0,0,0,0.15)';
+          });
+          btn.addEventListener('mouseleave', () => {
+            btn.style.transform = '';
+            btn.style.boxShadow = '';
+          });
+        });
+      });
+    </script>
+  </section>
+
+  <!-- Mobile App -->
+  <section class="mobile-section" id="mobile-section">
+    <div class="mobile-inner">
+      <div class="mobile-grid">
+        <div class="mobile-phone">
+          <div class="phone-screen">
+            <!-- Dynamic Island -->
+            <div class="dynamic-island"></div>
+
+            <!-- iOS Lock Screen -->
+            <div class="ios-lockscreen">
+              <div class="ios-time">
+                <div class="ios-time-display" id="ios-time">9:41</div>
+                <div class="ios-date" id="ios-date">Wednesday, January 15</div>
+              </div>
+
+              <!-- Notification Stack -->
+              <div class="ios-notifications">
+                <div class="ios-notif-group" id="notif-container">
+                  <!-- Notifications will be dynamically inserted here -->
+                </div>
+              </div>
+
+              <!-- Home Indicator -->
+              <div class="ios-home-indicator"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-content">
+          <h2>Always Connected, Always Informed</h2>
+          <p>The Birth Model mobile app keeps you updated on patient status, delivery predictions, and risk alerts—wherever you are in the hospital. HIPAA-compliant notifications ensure you never miss a critical update.</p>
+          <div class="app-buttons">
+            <a href="https://apps.apple.com/us/app/birth-model/id6473621253" class="app-btn" target="_blank">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              <div>
+                <div class="app-btn-label">Download on the</div>
+                <div class="app-btn-name">App Store</div>
+              </div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.birthmodel.provider" class="app-btn" target="_blank">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm.91-.91L5.51 2.66l12.21 6.32-1 1.23zm1.28-1.17L7.29 6.89l8.88 8.89 2.83-1.74z"/></svg>
+              <div>
+                <div class="app-btn-label">Get it on</div>
+                <div class="app-btn-name">Google Play</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2>Ready to <span>Transform</span> Your Practice?</h2>
+      <p>See how Birth Model can reduce burnout and improve patient care.</p>
+      <a href="demo.html" class="btn btn-primary">Request a Demo</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <img src="birthmodelfooterlogo.png" alt="Birth Model">
+          </div>
+          <p>AI precision for financial, operational, and clinical excellence in Labor & Delivery.</p>
+          <div class="footer-social">
+            <a href="mailto:support@birthmodel.com" class="footer-social-icon" title="Email">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/birth-model/" target="_blank" class="footer-social-icon" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/playlist?list=PLNI6vyIhohr05pB-D8hXatntLZPTyCD1M" target="_blank" class="footer-social-icon" title="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="index.html">Home</a>
+          <a href="solutions-hospitals.html">For Hospitals</a>
+          <a href="solutions-clinicians.html">For Clinicians</a>
+          <a href="company.html">Company</a>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="https://apps.apple.com/us/app/birth-model/id1562474693" target="_blank">Apple App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.birthmodel.provider" target="_blank">Google Play</a>
+          <a href="https://showroom.epic.com/Search?q=birth%20model" target="_blank">Epic Showroom</a>
+          <a href="https://provider.birthmodel.com/login" target="_blank">Cloud Platform</a>
+          <a href="https://provider.birthmodel.com/motherboard" target="_blank">Motherboard</a>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="blogs.html">Blogs</a>
+          <a href="videos.html">Videos</a>
+          <a href="roi-calculator.html">ROI Calculator</a>
+          <a href="implementation.html">Mobile Implementation</a>
+          <a href="https://app.vanta.com/birthmodel/trust/pbt1stf4skwae09sr1wjf" target="_blank">Trust Center</a>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="demo.html">Request Demo</a>
+          <a href="https://calendly.com/birthmodel" target="_blank">Schedule Meeting</a>
+          <a href="mailto:support@birthmodel.com">support@birthmodel.com</a>
+    <a href="careers.html">Careers</a>
+        </div>
+      </div>
+      
+            <div class="footer-bottom">
+        <div class="footer-legal">
+          <span>© 2026 Birth Model, Inc. All Rights Reserved.</span>
+          <span>|</span>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span>|</span>
+          <a href="terms-of-service.html">Terms of Service</a>
+        </div>
+        <div class="footer-badges">
+          <div class="footer-badge">
+            <span class="check">✓</span> SOC 2 Type II
+          </div>
+          <div class="footer-badge">
+            <span class="check">✓</span> HIPAA Compliant
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const hamburger = document.querySelector('.nav-hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const revealElements = document.querySelectorAll('.reveal');
+      revealElements.forEach(el => el.classList.add('active'));
+
+      // Update iOS clock and date display
+      function updateIOSDateTime() {
+        const now = new Date();
+        const timeEl = document.getElementById('ios-time');
+        const dateEl = document.getElementById('ios-date');
+
+        if (timeEl) {
+          let hours = now.getHours();
+          const minutes = now.getMinutes().toString().padStart(2, '0');
+          hours = hours % 12 || 12;
+          timeEl.textContent = hours + ':' + minutes;
+        }
+
+        if (dateEl) {
+          const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+          dateEl.textContent = days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate();
+        }
+      }
+      updateIOSDateTime();
+      setInterval(updateIOSDateTime, 60000);
+
+      // Timer-based Mobile Section Animation
+      const mobilePhone = document.querySelector('.mobile-phone');
+      const mobileContent = document.querySelector('.mobile-content');
+      const notifContainer = document.getElementById('notif-container');
+
+      const notifications = [
+        { urgent: true, title: '🚨 High Risk Alert', body: 'T. Atkinson (LDR 4) - Severe PreE, BP 168/112. ETA: 45 min', time: 'now' },
+        { urgent: false, title: '⏱️ Delivery Update', body: 'N. Davis progressed to 7cm. Updated ETA: 2h 15m', time: '5m ago' },
+        { urgent: false, title: '✅ Delivery Complete', body: 'S. Davis delivered via C/S. Mother and baby stable.', time: '12m ago' }
+      ];
+
+      let currentNotifIndex = 0;
+
+      function createNotifElement(notif) {
+        const div = document.createElement('div');
+        div.className = 'ios-notif' + (notif.urgent ? ' urgent' : '');
+        div.innerHTML = '<div class="ios-notif-header"><div class="ios-notif-icon"><img src="BM_App_Icon.png" alt="Birth Model"></div><span class="ios-notif-app">Birth Model</span><span class="ios-notif-time">' + notif.time + '</span></div><div class="ios-notif-title">' + notif.title + '</div><div class="ios-notif-body">' + notif.body + '</div>';
+        return div;
+      }
+
+      function addNextNotification() {
+        if (currentNotifIndex < notifications.length) {
+          const notif = notifications[currentNotifIndex];
+          const notifEl = createNotifElement(notif);
+          notifContainer.appendChild(notifEl);
+          currentNotifIndex++;
+
+          // Schedule next notification
+          if (currentNotifIndex < notifications.length) {
+            setTimeout(addNextNotification, 2000);
+          }
+        }
+      }
+
+      // Show phone immediately, then start notification sequence
+      if (mobilePhone) mobilePhone.classList.add('visible');
+      if (mobileContent) mobileContent.classList.add('visible');
+
+      // Start adding notifications after a short delay
+      setTimeout(addNextNotification, 800);
+    });
+  </script>
+</body>
+</html>
