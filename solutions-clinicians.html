@@ -1444,7 +1444,7 @@
         const isTablet = (screenWidth >= 768 && screenWidth <= 1366) ||
                          (screenHeight >= 768 && screenHeight <= 1366);
         if (isTablet && viewportMeta) {
-          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=0.75, minimum-scale=0.75');
+          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=0.85, minimum-scale=0.85');
         }
       })();
 
@@ -1590,20 +1590,37 @@
           }
         }
 
-        // Throttled scroll
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-          if (!ticking) {
-            requestAnimationFrame(() => {
-              handleScroll();
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }, { passive: true });
+        // Check if mobile
+        const isMobile = window.innerWidth <= 768;
 
-        // Initial check
-        handleScroll();
+        if (isMobile) {
+          // Mobile: Auto-cycle through steps
+          let mobileStep = 1;
+          function autoCycleSteps() {
+            currentStep = mobileStep;
+            updateStepIndicators();
+            updateHandoffMockup();
+            if (progressFill) progressFill.style.width = ((mobileStep / 3) * 100) + '%';
+            mobileStep = mobileStep >= 3 ? 1 : mobileStep + 1;
+          }
+          autoCycleSteps();
+          setInterval(autoCycleSteps, 2500);
+        } else {
+          // Throttled scroll
+          let ticking = false;
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                handleScroll();
+                ticking = false;
+              });
+              ticking = true;
+            }
+          }, { passive: true });
+
+          // Initial check
+          handleScroll();
+        }
 
         // Button hover animations
         document.querySelectorAll('.action-btn').forEach(btn => {
@@ -2779,20 +2796,38 @@
           }
         }
 
-        // Throttled scroll
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-          if (!ticking) {
-            requestAnimationFrame(() => {
-              handleScroll();
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }, { passive: true });
+        // Check if mobile
+        const isMobile = window.innerWidth <= 768;
 
-        // Initial check
-        handleScroll();
+        if (isMobile) {
+          // Mobile: Auto-cycle through steps
+          let mobileStep = 1;
+          initializeCards();
+          function autoCycleSteps() {
+            currentStep = mobileStep;
+            updateStepIndicators();
+            updateBookingMockup();
+            if (progressFill) progressFill.style.width = ((mobileStep / 4) * 100) + '%';
+            mobileStep = mobileStep >= 4 ? 1 : mobileStep + 1;
+          }
+          autoCycleSteps();
+          setInterval(autoCycleSteps, 2500);
+        } else {
+          // Throttled scroll
+          let ticking = false;
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                handleScroll();
+                ticking = false;
+              });
+              ticking = true;
+            }
+          }, { passive: true });
+
+          // Initial check
+          handleScroll();
+        }
 
         // Hover effects for confirm buttons
         document.querySelectorAll('.confirm-btn').forEach(btn => {
