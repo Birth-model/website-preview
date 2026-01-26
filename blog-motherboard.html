@@ -431,16 +431,25 @@
     }
     
     document.addEventListener('DOMContentLoaded', function() {
-      // iPad/Tablet zoom adjustment - increase zoom for better handling
+      // Responsive zoom adjustment based on device
       (function() {
         const viewportMeta = document.querySelector('meta[name="viewport"]');
         const screenWidth = window.screen.width;
         const screenHeight = window.screen.height;
+        if (!viewportMeta) return;
+
+        // Desktop (large screens > 1366px): Full zoom
+        const isDesktop = screenWidth > 1366 && screenHeight > 900;
+        // Tablet (medium screens 768-1366px)
         const isTablet = (screenWidth >= 768 && screenWidth <= 1366) ||
                          (screenHeight >= 768 && screenHeight <= 1366);
-        if (isTablet && viewportMeta) {
+
+        if (isDesktop) {
+          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, minimum-scale=1.0');
+        } else if (isTablet) {
           viewportMeta.setAttribute('content', 'width=device-width, initial-scale=0.85, minimum-scale=0.85');
         }
+        // Mobile (< 768px) keeps the default 0.6 from HTML
       })();
 
       const revealElements = document.querySelectorAll('.reveal');
