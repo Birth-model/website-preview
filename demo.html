@@ -328,8 +328,12 @@
     .footer-badge .check {
       color: #4ade80;
     }
-    /* Mobile footer adjustments */
+    /* Mobile footer adjustments - zoom out to 75% in portrait */
     @media (max-width: 1024px) {
+      .footer {
+        transform: scale(0.75);
+        transform-origin: top center;
+      }
       .footer-email-link { display: none !important; }
       .footer-grid {
         grid-template-columns: 1fr repeat(4, 1fr) !important;

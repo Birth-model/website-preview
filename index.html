@@ -90,7 +90,7 @@
     "sameAs": [
       "https://www.linkedin.com/company/birth-model/",
       "https://www.youtube.com/playlist?list=PLNI6vyIhohr05pB-D8hXatntLZPTyCD1M",
-      "https://apps.apple.com/us/app/birth-model/id1562474693",
+      "https://apps.apple.com/us/app/birth-model/id6473621253",
       "https://play.google.com/store/apps/details?id=com.birthmodel.provider"
     ]
   }
@@ -1681,13 +1681,26 @@
       .stat-item { padding: 16px 10px; }
       .stat-value { font-size: 28px; }
       .stat-label { font-size: 10px; }
-      /* Mobile integration section */
+      /* Mobile integration section - zoom out to 75% */
       .integration-section { padding: 50px 20px; }
+      .data-flow-container {
+        transform: scale(0.75);
+        transform-origin: top center;
+        margin: 30px 0 0;
+      }
+      .integration-stats-row {
+        transform: scale(0.85);
+        transform-origin: top center;
+      }
       .section-header { margin-bottom: 30px; }
       .section-label { font-size: 11px; margin-bottom: 8px; }
       .section-title { font-size: 24px; }
       .section-subtitle { font-size: 13px; }
-      /* Mobile footer adjustments */
+      /* Mobile footer adjustments - zoom out to 75% in portrait */
+      .footer {
+        transform: scale(0.75);
+        transform-origin: top center;
+      }
       .footer-email-link { display: none !important; }
       .footer-grid {
         grid-template-columns: 1fr repeat(4, 1fr) !important;
@@ -2433,7 +2446,7 @@
         
         <div class="footer-col">
           <h4>Platform</h4>
-          <a href="https://apps.apple.com/us/app/birth-model/id1562474693" target="_blank">Apple App Store</a>
+          <a href="https://apps.apple.com/us/app/birth-model/id6473621253" target="_blank">Apple App Store</a>
           <a href="https://play.google.com/store/apps/details?id=com.birthmodel.provider" target="_blank">Google Play</a>
           <a href="https://showroom.epic.com/Search?q=birth%20model" target="_blank">Epic Showroom</a>
           <a href="https://provider.birthmodel.com/login" target="_blank">Cloud Platform</a>

@@ -277,8 +277,12 @@
     .footer-badge .check {
       color: #4ade80;
     }
-    /* Mobile footer adjustments */
+    /* Mobile footer adjustments - zoom out to 75% in portrait */
     @media (max-width: 1024px) {
+      .footer {
+        transform: scale(0.75);
+        transform-origin: top center;
+      }
       .footer-email-link { display: none !important; }
       .footer-grid {
         grid-template-columns: 1fr repeat(4, 1fr) !important;
@@ -547,7 +551,7 @@
 
         <div class="footer-col">
           <h4>Platform</h4>
-          <a href="https://apps.apple.com/us/app/birth-model/id1562474693" target="_blank">Apple App Store</a>
+          <a href="https://apps.apple.com/us/app/birth-model/id6473621253" target="_blank">Apple App Store</a>
           <a href="https://play.google.com/store/apps/details?id=com.birthmodel.provider" target="_blank">Google Play</a>
           <a href="https://showroom.epic.com/Search?q=birth%20model" target="_blank">Epic Showroom</a>
           <a href="https://provider.birthmodel.com/login" target="_blank">Cloud Platform</a>
