@@ -112,6 +112,8 @@
       overflow: hidden;
       transition: all 0.4s ease;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
     .video-card:hover { transform: translateY(-6px); box-shadow: 0 15px 40px rgba(30, 61, 60, 0.12); }
     .video-thumbnail {
@@ -147,7 +149,7 @@
       padding: 4px 8px;
       border-radius: 4px;
     }
-    .video-content { padding: 20px; }
+    .video-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
     .video-tag {
       display: inline-block;
       padding: 4px 10px;
@@ -159,7 +161,8 @@
       margin-bottom: 10px;
     }
     .video-title { font-size: 16px; font-weight: 900; color: var(--bm-dark-teal); line-height: 1.4; margin-bottom: 8px; }
-    .video-desc { font-size: 12px; color: var(--bm-gray); line-height: 1.5; }
+    .video-desc { font-size: 12px; color: var(--bm-gray); line-height: 1.5; flex: 1; }
+    .video-date { font-size: 11px; color: var(--bm-gray); margin-top: auto; }
 
     /* Embedded Video Card */
     .video-card-embed {
@@ -341,15 +344,37 @@
     .footer-badge .check {
       color: #4ade80;
     }
-    /* Mobile footer adjustments */
+    /* Mobile responsive */
     @media (max-width: 1024px) {
+      .videos-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .video-thumbnail { height: 140px; }
+      .video-content { padding: 14px; }
+      .video-title { font-size: 12px; margin-bottom: 4px; }
+      .video-desc { font-size: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      .video-tag { font-size: 8px; padding: 3px 8px; margin-bottom: 6px; }
+      .page-header { padding: 120px 20px 40px; }
+      .page-header h1 { font-size: 28px; }
+      .page-header p { font-size: 14px; }
+      .section-title { font-size: 20px; }
+      .videos-section { padding: 40px 20px; }
+      .cta-section { padding: 50px 20px; }
+      .cta-section h2 { font-size: 24px; }
+      .cta-section p { font-size: 14px; }
+      /* Mobile footer adjustments */
       .footer-email-link { display: none !important; }
+      .footer-grid {
+        grid-template-columns: 1fr repeat(4, 1fr) !important;
+        gap: 12px !important;
+      }
+      .footer-col h4 { font-size: 9px !important; letter-spacing: 1px !important; margin-bottom: 12px !important; }
+      .footer-col a { font-size: 10px !important; margin-bottom: 6px !important; }
       .footer-bottom { flex-direction: column; gap: 12px; }
       .footer-legal { flex-wrap: wrap; justify-content: center; font-size: 11px; gap: 6px; }
       .footer-badges { gap: 8px; }
       .footer-badge { padding: 6px 10px; font-size: 10px; gap: 4px; }
-      .footer-brand { max-width: 140px; }
-      .footer-brand img { height: 24px; }
+      .footer-brand { max-width: 120px; }
+      .footer-brand img { height: 20px !important; }
+      .footer-brand p { font-size: 9px !important; }
     }
   </style>
 </head>
