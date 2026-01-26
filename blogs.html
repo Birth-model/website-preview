@@ -242,13 +242,16 @@
     .footer-badge .check {
       color: #4ade80;
     }
-    @media (max-width: 1024px) {
-      
-    }
+    /* Mobile footer adjustments */
     @media (max-width: 768px) {
-      
-      
-      
+      .footer-email-link { display: none; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; font-size: 11px; gap: 6px; }
+      .footer-badges { gap: 8px; }
+      .footer-badge { padding: 6px 10px; font-size: 10px; gap: 4px; }
+    }
+    @media (max-width: 1024px) {
+
     }
 
   </style>
@@ -739,7 +742,7 @@
       <form class="newsletter-form" id="newsletter-form" action="https://formsubmit.co/anish@birthmodel.com" method="POST">
         <input type="hidden" name="_subject" value="Birth Model Newsletter Signup">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="thank-you.html?type=newsletter">
+        <input type="hidden" name="_next" value="https://birthmodel.com/thank-you.html?type=newsletter">
         <input type="email" class="newsletter-input" name="email" placeholder="Enter your email" required>
         <button type="submit" class="newsletter-btn">Subscribe</button>
       </form>
@@ -806,7 +809,7 @@
           <h4>Contact</h4>
           <a href="demo.html">Request Demo</a>
           <a href="https://calendly.com/birthmodel" target="_blank">Schedule Meeting</a>
-          <a href="mailto:support@birthmodel.com">support@birthmodel.com</a>
+          <a href="mailto:support@birthmodel.com" class="footer-email-link">support@birthmodel.com</a>
     <a href="careers.html">Careers</a>
         </div>
       </div>

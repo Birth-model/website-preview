@@ -326,7 +326,17 @@
       font-size: 12px;
       font-weight: 700;
     }
-    .footer-badge .check { color: #4ade80; }
+    .footer-badge .check {
+      color: #4ade80;
+    }
+    /* Mobile footer adjustments */
+    @media (max-width: 768px) {
+      .footer-email-link { display: none; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; font-size: 11px; gap: 6px; }
+      .footer-badges { gap: 8px; }
+      .footer-badge { padding: 6px 10px; font-size: 10px; gap: 4px; }
+    }
     @media (max-width: 768px) {
       
       
@@ -554,7 +564,7 @@
           <h4>Contact</h4>
           <a href="demo.html">Request Demo</a>
           <a href="https://calendly.com/birthmodel" target="_blank">Schedule Meeting</a>
-          <a href="mailto:support@birthmodel.com">support@birthmodel.com</a>
+          <a href="mailto:support@birthmodel.com" class="footer-email-link">support@birthmodel.com</a>
     <a href="careers.html">Careers</a>
         </div>
       </div>

@@ -1675,6 +1675,12 @@
       .section-title { font-size: 28px; }
       .cta-title { font-size: 28px; }
             .cta-email-input { text-align: center; }
+      /* Mobile footer adjustments */
+      .footer-email-link { display: none; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; font-size: 11px; gap: 6px; }
+      .footer-badges { gap: 8px; }
+      .footer-badge { padding: 6px 10px; font-size: 10px; gap: 4px; }
       /* Mobile hero animation optimization */
       .hero-inner { padding: 120px 20px 60px; gap: 30px; }
       .epic-main-content { height: 320px; }
@@ -2362,7 +2368,7 @@
       <form class="cta-form" id="demo-form" action="https://formsubmit.co/anish@birthmodel.com" method="POST">
         <input type="hidden" name="_subject" value="Birth Model Demo Request">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="thank-you.html?type=demo">
+        <input type="hidden" name="_next" value="https://birthmodel.com/thank-you.html?type=demo">
         <input type="email" class="cta-email-input" name="email" placeholder="Email address" required>
         <button type="submit" class="cta-submit-btn">Get a demo</button>
       </form>
@@ -2425,7 +2431,7 @@
           <h4>Contact</h4>
           <a href="demo.html">Request Demo</a>
           <a href="https://calendly.com/birthmodel" target="_blank">Schedule Meeting</a>
-          <a href="mailto:support@birthmodel.com">support@birthmodel.com</a>
+          <a href="mailto:support@birthmodel.com" class="footer-email-link">support@birthmodel.com</a>
           <a href="careers.html">Careers</a>
         </div>
       </div>
