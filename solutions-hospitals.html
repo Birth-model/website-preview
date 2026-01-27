@@ -208,12 +208,25 @@
       gap: 40px;
       align-items: center;
     }
+    .unit-grid, .quality-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
     .solution-grid.reverse .solution-content { order: 2; }
     .solution-grid.reverse .solution-image { order: 1; }
     @media (max-width: 1400px) {
-      .solution-grid { grid-template-columns: 1fr; gap: 20px; }
+      .solution-grid:not(.unit-grid):not(.quality-grid) { grid-template-columns: 1fr; gap: 20px; }
       .solution-grid.reverse .solution-content { order: 1; }
       .solution-grid.reverse .solution-image { order: 2; }
+    }
+    /* Keep scroll section grids two-column on desktop (above 768px) */
+    @media (min-width: 769px) {
+      .staff-scroll-section .solution-grid,
+      .unit-grid,
+      .quality-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 40px;
+      }
     }
     @media (max-width: 1024px) {
       .solution-section { padding: 40px 30px; }
@@ -240,6 +253,30 @@
       .roi-card { padding: 20px 12px; }
       .roi-value { font-size: 22px; white-space: nowrap; }
       .roi-label { font-size: 10px; }
+
+      /* CRITICAL: Force all scroll section grids to stack vertically on mobile */
+      .staff-scroll-section .solution-grid,
+      .unit-scroll-section .solution-grid,
+      .quality-scroll-section .solution-grid,
+      .unit-grid,
+      .quality-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+      }
+      .staff-scroll-section .solution-content,
+      .unit-scroll-section .solution-content,
+      .quality-scroll-section .solution-content {
+        order: 1 !important;
+      }
+      .staff-mgmt-mockup,
+      .unit-intel-mockup,
+      .qi-mockup {
+        order: 2 !important;
+        transform: scale(0.65) !important;
+        transform-origin: top center !important;
+        margin-top: 20px !important;
+      }
     }
     .solution-label {
       font-size: 11px;
@@ -264,7 +301,7 @@
     }
     .solution-list {
       list-style: none;
-      margin-bottom: -12%;
+      margin-bottom: 0;
     }
     .solution-list li {
       display: flex;
@@ -1779,7 +1816,7 @@
           </style>
     <div class="unit-sticky-container">
       <div class="solution-inner">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+        <div class="solution-grid unit-grid">
           <div class="solution-content">
             <div class="unit-steps">
               <div class="unit-step" data-step="1"><span class="unit-step-num">1</span> View Census</div>
@@ -2423,7 +2460,7 @@
           </style>
     <div class="quality-sticky-container">
       <div class="solution-inner">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+        <div class="solution-grid quality-grid">
           <div class="solution-content">
             <div class="quality-steps">
               <div class="quality-step" data-step="1"><span class="quality-step-num">1</span> Quality Metrics</div>
