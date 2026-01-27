@@ -1119,32 +1119,39 @@
             @media (max-width: 768px) {
               .staff-scroll-section {
                 min-height: auto !important;
-                padding: 30px 20px 20px !important;
+                padding: 30px 16px 20px !important;
               }
               .staff-sticky-container {
                 position: relative !important;
                 top: auto !important;
                 height: auto !important;
                 padding: 10px !important;
+                display: block !important;
               }
               .staff-scroll-section .solution-grid {
-                grid-template-columns: 1fr !important;
-                gap: 20px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 30px !important;
               }
               .staff-scroll-section .solution-content {
-                order: 1;
+                order: 1 !important;
+                position: relative !important;
+                z-index: 1 !important;
               }
               .staff-mgmt-mockup {
-                transform: scale(0.85) !important;
+                transform: scale(0.75) !important;
                 transform-origin: top center !important;
-                order: 2;
-                margin: 0 auto;
+                order: 2 !important;
+                margin: 0 auto !important;
+                position: relative !important;
+                z-index: 0 !important;
+                max-width: 100% !important;
               }
               .staff-steps {
                 justify-content: center;
               }
               .solution-content h2 {
-                font-size: 22px;
+                font-size: 20px;
               }
               .solution-list li {
                 font-size: 12px;
@@ -1735,13 +1742,14 @@
       @media (max-width: 768px) {
         .unit-scroll-section {
           min-height: auto !important;
-          padding: 40px 20px !important;
+          padding: 30px 16px !important;
         }
         .unit-sticky-container {
           position: relative !important;
           top: auto !important;
           height: auto !important;
-          padding: 20px !important;
+          padding: 10px !important;
+          display: block !important;
         }
         .unit-scroll-section .solution-grid,
         .unit-sticky-container > .solution-inner > div[style*="grid"] {
@@ -1749,10 +1757,19 @@
           flex-direction: column !important;
           gap: 30px !important;
         }
+        .unit-scroll-section .solution-content {
+          order: 1 !important;
+          position: relative !important;
+          z-index: 1 !important;
+        }
         .unit-intel-mockup {
-          transform: scale(0.85) !important;
+          transform: scale(0.75) !important;
           transform-origin: top center !important;
-          margin: 0 auto;
+          margin: 0 auto !important;
+          order: 2 !important;
+          position: relative !important;
+          z-index: 0 !important;
+          max-width: 100% !important;
         }
         .unit-steps {
           justify-content: center;
@@ -2369,13 +2386,14 @@
       @media (max-width: 768px) {
         .quality-scroll-section {
           min-height: auto !important;
-          padding: 40px 20px !important;
+          padding: 30px 16px !important;
         }
         .quality-sticky-container {
           position: relative !important;
           top: auto !important;
           height: auto !important;
-          padding: 20px !important;
+          padding: 10px !important;
+          display: block !important;
         }
         .quality-scroll-section .solution-grid,
         .quality-sticky-container > .solution-inner > div[style*="grid"] {
@@ -2383,10 +2401,19 @@
           flex-direction: column !important;
           gap: 30px !important;
         }
+        .quality-scroll-section .solution-content {
+          order: 1 !important;
+          position: relative !important;
+          z-index: 1 !important;
+        }
         .qi-mockup {
-          transform: scale(0.85) !important;
+          transform: scale(0.75) !important;
           transform-origin: top center !important;
-          margin: 0 auto;
+          margin: 0 auto !important;
+          order: 2 !important;
+          position: relative !important;
+          z-index: 0 !important;
+          max-width: 100% !important;
         }
         .quality-steps {
           justify-content: center;

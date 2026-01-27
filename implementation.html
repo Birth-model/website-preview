@@ -283,6 +283,16 @@
       color: #6b21a8;
     }
 
+    /* Table wrapper for mobile scroll */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 20px 0;
+    }
+    .table-wrapper .doc-table {
+      margin: 0;
+    }
+
     /* Code blocks */
     .code-block {
       background: #1e293b;
@@ -290,6 +300,7 @@
       padding: 20px;
       margin: 20px 0;
       overflow-x: auto;
+      max-width: 100%;
     }
     .code-block pre {
       margin: 0;
@@ -521,16 +532,80 @@
       .doc-content {
         padding: 24px;
       }
-      
-      
+    }
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+      .doc-layout {
+        padding: 16px;
+        gap: 20px;
+      }
+      .doc-content {
+        padding: 16px;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      .doc-section {
+        max-width: 100%;
+        overflow-x: auto;
+      }
+      .doc-section h2 {
+        font-size: 22px;
+      }
+      .doc-section h3 {
+        font-size: 16px;
+      }
+      .doc-section p, .doc-section li {
+        font-size: 13px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      .info-box {
+        padding: 14px;
+        margin: 16px 0;
+      }
+      .info-box p {
+        font-size: 11px;
+      }
+      .doc-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .doc-table {
+        font-size: 11px;
+        min-width: 400px;
+      }
+      .doc-table th, .doc-table td {
+        padding: 8px 6px;
+      }
+      .steps-list li {
+        padding: 12px;
+      }
+      .step-number {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+      }
+      .step-content h4 {
+        font-size: 13px;
+      }
+      .step-content p {
+        font-size: 12px;
+      }
     }
     @media (max-width: 600px) {
-      .doc-hero { padding: 100px 20px 40px; }
-      
-      
-      
-      .doc-table { font-size: 12px; }
-      .doc-table th, .doc-table td { padding: 8px; }
+      .doc-hero { padding: 100px 16px 40px; }
+      .doc-hero h1 { font-size: 24px; }
+      .doc-hero p { font-size: 13px; }
+      .doc-layout {
+        padding: 12px;
+      }
+      .doc-content {
+        padding: 12px;
+      }
+      .doc-table { font-size: 10px; }
+      .doc-table th, .doc-table td { padding: 6px 4px; }
     }
   </style>
 </head>
@@ -701,7 +776,7 @@
         <h2><span class="icon">🔑</span> Configuration Keys</h2>
 
         <h3>Home Screen — User Initials</h3>
-        <table class="doc-table">
+        <div class="table-wrapper"><table class="doc-table">
           <thead>
             <tr>
               <th>Key</th>
@@ -721,10 +796,10 @@
               <td>Text color for user initials</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>Login Button</h3>
-        <table class="doc-table">
+        <div class="table-wrapper"><table class="doc-table">
           <thead>
             <tr>
               <th>Key</th>
@@ -749,10 +824,10 @@
               <td>Login button label text (e.g., "Start New Shift")</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>Full Screen Images</h3>
-        <table class="doc-table">
+        <div class="table-wrapper"><table class="doc-table">
           <thead>
             <tr>
               <th>Key</th>
@@ -772,7 +847,7 @@
               <td>Splash screen background image URL</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </section>
 
       <!-- Sample Configuration -->
@@ -816,7 +891,7 @@
         <h2><span class="icon">🖼️</span> Image Requirements</h2>
         <p>Requirements for background images provided via URL:</p>
 
-        <table class="doc-table">
+        <div class="table-wrapper"><table class="doc-table">
           <thead>
             <tr>
               <th>Specification</th>
@@ -857,7 +932,7 @@
               <td>500 KB recommended</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <div class="info-box">
           <div class="info-box-title">Safe Area Tip</div>
@@ -937,7 +1012,7 @@
       <section id="troubleshooting" class="doc-section">
         <h2><span class="icon">🔧</span> Troubleshooting</h2>
 
-        <table class="doc-table">
+        <div class="table-wrapper"><table class="doc-table">
           <thead>
             <tr>
               <th>Issue</th>
@@ -966,7 +1041,7 @@
               <td>Check available license count in Apple Business Manager; verify MDM server token</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>Need Help?</h3>
         <p>Contact Birth Model support for enterprise deployment guidance:</p>
