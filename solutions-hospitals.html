@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.6, minimum-scale=0.6">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Solutions for Hospital L&D Units — Birth Model</title>
 
   <!-- SEO Meta Tags -->
@@ -225,12 +225,21 @@
       /* Condense left side text for mobile */
       .solution-content h2 { font-size: 22px; margin-bottom: 12px; }
       .solution-content p { font-size: 13px; margin-bottom: 16px; line-height: 1.5; }
+      .solution-list { margin-bottom: 0; }
       .solution-list li { font-size: 11px; padding: 4px 0; gap: 6px; }
       .solution-list .icon { font-size: 10px; }
       .solution-label { font-size: 10px; margin-bottom: 10px; }
       /* Reduce section spacing */
       .stats-section { padding: 40px 16px; }
       .pillars-section { padding: 40px 16px; }
+      /* ROI cards - fix text wrapping */
+      .roi-section { padding: 40px 16px; }
+      .roi-inner h2 { font-size: 24px; }
+      .roi-inner p { font-size: 13px; margin-bottom: 24px; }
+      .roi-grid { gap: 12px; }
+      .roi-card { padding: 20px 12px; }
+      .roi-value { font-size: 22px; white-space: nowrap; }
+      .roi-label { font-size: 10px; }
     }
     .solution-label {
       font-size: 11px;
@@ -460,24 +469,30 @@
     .footer-badge .check {
       color: #4ade80;
     }
-    /* Mobile footer - scale to fit width */
+    /* Mobile footer - proper responsive design without scaling */
     @media (max-width: 1024px) {
       .cta-section { padding: 60px 20px; }
       .footer {
-        transform: scale(0.85);
-        transform-origin: top center;
-        margin-bottom: -12%;
-        padding: 50px 20px 20px;
+        padding: 40px 12px 20px;
       }
       .footer-inner { max-width: 100%; }
       .footer-email-link { display: none !important; }
       .footer-grid {
-        grid-template-columns: 1.2fr repeat(4, 1fr) !important;
-        gap: 20px !important;
+        grid-template-columns: 1.3fr repeat(4, 1fr) !important;
+        gap: 8px !important;
       }
-      .footer-bottom { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
-      .footer-legal { flex-wrap: wrap; justify-content: center; gap: 8px; }
-      .footer-badges { justify-content: center; gap: 10px; }
+      .footer-brand-logo img { height: 24px; }
+      .footer-brand p { font-size: 9px; max-width: 100%; margin-bottom: 10px; }
+      .footer-social { gap: 6px; }
+      .footer-social-icon { width: 24px; height: 24px; }
+      .footer-social-icon svg { width: 14px; height: 14px; }
+      .footer-col h4 { font-size: 8px; letter-spacing: 1px; margin-bottom: 8px; }
+      .footer-col a { font-size: 9px; margin-bottom: 6px; line-height: 1.3; }
+      .footer-bottom { flex-direction: column; align-items: center; gap: 12px; padding-top: 20px; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; gap: 6px; font-size: 8px; }
+      .footer-legal span, .footer-legal a { font-size: 8px; }
+      .footer-badges { justify-content: center; gap: 8px; }
+      .footer-badge { font-size: 8px; padding: 4px 8px; }
     }
   </style>
 </head>
@@ -522,7 +537,6 @@
     <a href="blogs.html">Blog</a>
     <a href="videos.html">Videos</a>
     <a href="roi-calculator.html">ROI Calculator</a>
-          <a href="implementation.html">Mobile Implementation</a>
     <a href="implementation.html">Mobile Implementation</a>
     <a href="careers.html">Careers</a>
     <a href="https://provider.birthmodel.com" class="mobile-login" target="_blank">Clinician Login</a>
