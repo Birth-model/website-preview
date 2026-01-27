@@ -268,6 +268,7 @@
       .unit-scroll-section .solution-content,
       .quality-scroll-section .solution-content {
         order: 1 !important;
+        background: transparent !important;
       }
       .staff-mgmt-mockup,
       .unit-intel-mockup,
@@ -621,22 +622,18 @@
       @media (max-width: 1024px) {
         .pillar-desc { display: none; }
         .pillars-grid {
-          display: flex;
-          overflow-x: auto;
-          gap: 10px;
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 6px;
           padding-bottom: 10px;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
         }
-        .pillars-grid::-webkit-scrollbar { display: none; }
         .pillar-card {
-          padding: 16px 12px;
+          padding: 10px 4px;
           text-align: center;
-          min-width: 100px;
-          flex-shrink: 0;
+          min-width: 0;
         }
-        .pillar-icon { width: 40px; height: 40px; font-size: 18px; margin-bottom: 10px; margin-left: auto; margin-right: auto; }
-        .pillar-title { font-size: 11px; margin-bottom: -12%; text-align: center; }
+        .pillar-icon { width: 32px; height: 32px; font-size: 14px; margin-bottom: 6px; margin-left: auto; margin-right: auto; }
+        .pillar-title { font-size: 8px; margin-bottom: 0; text-align: center; line-height: 1.2; }
         .pillars-header { text-align: center; }
         .pillars-header h2 { font-size: 24px; }
         .pillars-header p { font-size: 14px; }
@@ -1174,7 +1171,7 @@
                 order: 1 !important;
                 position: relative !important;
                 z-index: 10 !important;
-                background: white !important;
+                background: transparent !important;
               }
               .staff-mgmt-mockup {
                 transform: scale(0.7) !important;
@@ -1798,7 +1795,7 @@
           order: 1 !important;
           position: relative !important;
           z-index: 10 !important;
-          background: white !important;
+          background: transparent !important;
         }
         .unit-intel-mockup {
           transform: scale(0.7) !important;
@@ -2442,7 +2439,7 @@
           order: 1 !important;
           position: relative !important;
           z-index: 10 !important;
-          background: white !important;
+          background: transparent !important;
         }
         .qi-mockup {
           transform: scale(0.7) !important;
