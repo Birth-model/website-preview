@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Room Admin — Birth Model</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="BM_App_Icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bm-black: #1b1b1b;
+      --bm-gray: #6c757d;
+      --bm-teal: #abdfe2;
+      --bm-coral: #ff7660;
+      --bm-coral-light: #ffebe7;
+      --bm-dark-teal: #1e3d3c;
+      --bm-light-gray: #f8fafa;
+      --bm-cream: #faf9f7;
+      --bm-teal-light: #e8f6f7;
+      --bm-border: #e8e6e4;
+      --bm-green: #22c55e;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bm-cream);
+      color: var(--bm-black);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Admin Login */
+    .admin-login {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(30, 61, 60, 0.1);
+      text-align: center;
+    }
+
+    .login-card img {
+      height: 32px;
+      margin-bottom: 24px;
+    }
+
+    .login-card h1 {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 8px;
+    }
+
+    .login-card p {
+      font-size: 14px;
+      color: var(--bm-gray);
+      margin-bottom: 24px;
+    }
+
+    /* Admin Panel */
+    .admin-panel {
+      display: none;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .admin-panel.active {
+      display: block;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .admin-header h1 {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+    }
+
+    .admin-header img {
+      height: 28px;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(30, 61, 60, 0.06);
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--bm-gray);
+      margin-bottom: 24px;
+    }
+
+    /* Form Elements */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: end;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--bm-dark-teal);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input {
+      padding: 12px 14px;
+      border: 2px solid var(--bm-border);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--bm-teal);
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--bm-coral);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 118, 96, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--bm-light-gray);
+      color: var(--bm-gray);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bm-border);
+    }
+
+    .btn-danger {
+      background: var(--bm-coral-light);
+      color: var(--bm-coral);
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+
+    .btn-danger:hover {
+      background: var(--bm-coral);
+      color: white;
+    }
+
+    /* Investor List */
+    .investor-list {
+      margin-top: 20px;
+    }
+
+    .investor-item {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr auto;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--bm-border);
+      align-items: center;
+    }
+
+    .investor-item:last-child {
+      border-bottom: none;
+    }
+
+    .investor-name {
+      font-weight: 700;
+      color: var(--bm-dark-teal);
+    }
+
+    .investor-email {
+      color: var(--bm-gray);
+      font-size: 14px;
+    }
+
+    .investor-password {
+      font-family: monospace;
+      background: var(--bm-light-gray);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--bm-dark-teal);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--bm-gray);
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    /* Quick Share */
+    .share-box {
+      background: var(--bm-teal-light);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .share-box h4 {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 12px;
+    }
+
+    .share-link {
+      display: flex;
+      gap: 10px;
+    }
+
+    .share-link input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 2px solid var(--bm-teal);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: monospace;
+      background: white;
+    }
+
+    .share-link button {
+      padding: 10px 16px;
+      background: var(--bm-dark-teal);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(30, 61, 60, 0.05);
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--bm-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Access Log */
+    .log-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--bm-border);
+      font-size: 13px;
+    }
+
+    .log-email {
+      font-weight: 700;
+      color: var(--bm-dark-teal);
+    }
+
+    .log-time {
+      color: var(--bm-gray);
+    }
+
+    /* Logout */
+    .logout-link {
+      color: var(--bm-gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .logout-link:hover {
+      color: var(--bm-coral);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .investor-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--bm-dark-teal);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Admin Login -->
+  <div class="admin-login" id="admin-login">
+    <div class="login-card">
+      <img src="Birth_Model_Logo.png" alt="Birth Model">
+      <h1>Data Room Admin</h1>
+      <p>Enter admin password to manage investor access</p>
+      <div class="form-group" style="margin-bottom: 16px; text-align: left;">
+        <label class="form-label">Admin Password</label>
+        <input type="password" class="form-input" id="admin-password" placeholder="Enter password" style="width: 100%;">
+      </div>
+      <button class="btn btn-primary" style="width: 100%;" onclick="adminLogin()">Access Admin Panel</button>
+    </div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-header">
+      <div>
+        <img src="Birth_Model_Logo.png" alt="Birth Model">
+        <h1 style="margin-top: 12px;">Investor Access Manager</h1>
+      </div>
+      <a href="#" class="logout-link" onclick="adminLogout()">Sign Out</a>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-investors">0</div>
+        <div class="stat-label">Investors Added</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-logins">0</div>
+        <div class="stat-label">Total Logins</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-recent">0</div>
+        <div class="stat-label">Last 7 Days</div>
+      </div>
+    </div>
+
+    <!-- Add Investor -->
+    <div class="card">
+      <h2 class="card-title">Add Investor</h2>
+      <p class="card-subtitle">Give an investor access to your data room</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-input" id="inv-name" placeholder="John Smith">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" id="inv-email" placeholder="john@vc.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="text" class="form-input" id="inv-password" placeholder="Auto-generated">
+        </div>
+        <button class="btn btn-primary" onclick="addInvestor()">Add</button>
+      </div>
+
+      <div class="share-box">
+        <h4>Data Room Link</h4>
+        <div class="share-link">
+          <input type="text" id="share-url" readonly>
+          <button onclick="copyLink()">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Investor List -->
+    <div class="card">
+      <h2 class="card-title">Investor Access List</h2>
+      <p class="card-subtitle">People who can access your data room</p>
+
+      <div class="investor-list" id="investor-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Access Log -->
+    <div class="card">
+      <h2 class="card-title">Recent Access Log</h2>
+      <p class="card-subtitle">Who has viewed your data room</p>
+
+      <div id="access-log">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ===== ADMIN PASSWORD =====
+    const ADMIN_PASSWORD = 'birthmodel-admin';
+
+    // ===== STORAGE KEYS =====
+    const INVESTORS_KEY = 'dataroom_investors';
+    const ACCESS_LOG_KEY = 'dataroom_access_log';
+
+    // ===== INITIALIZATION =====
+    function init() {
+      // Set share URL
+      const currentUrl = window.location.href.replace('seed-dataroom-admin.html', 'seed-dataroom.html');
+      document.getElementById('share-url').value = currentUrl;
+
+      // Generate random password for new investor
+      generatePassword();
+
+      // Check if already logged in
+      if (sessionStorage.getItem('admin_logged_in')) {
+        showAdminPanel();
+      }
+    }
+
+    // ===== ADMIN LOGIN =====
+    function adminLogin() {
+      const password = document.getElementById('admin-password').value;
+      if (password === ADMIN_PASSWORD) {
+        sessionStorage.setItem('admin_logged_in', 'true');
+        showAdminPanel();
+      } else {
+        showToast('Incorrect password');
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem('admin_logged_in');
+      document.getElementById('admin-login').style.display = 'flex';
+      document.getElementById('admin-panel').classList.remove('active');
+    }
+
+    function showAdminPanel() {
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('admin-panel').classList.add('active');
+      renderInvestors();
+      renderAccessLog();
+      updateStats();
+    }
+
+    // ===== INVESTOR MANAGEMENT =====
+    function getInvestors() {
+      return JSON.parse(localStorage.getItem(INVESTORS_KEY) || '[]');
+    }
+
+    function saveInvestors(investors) {
+      localStorage.setItem(INVESTORS_KEY, JSON.stringify(investors));
+    }
+
+    function generatePassword() {
+      const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
+      let password = '';
+      for (let i = 0; i < 8; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById('inv-password').value = password;
+    }
+
+    function addInvestor() {
+      const name = document.getElementById('inv-name').value.trim();
+      const email = document.getElementById('inv-email').value.trim().toLowerCase();
+      const password = document.getElementById('inv-password').value.trim();
+
+      if (!name || !email || !password) {
+        showToast('Please fill in all fields');
+        return;
+      }
+
+      const investors = getInvestors();
+
+      // Check if email already exists
+      if (investors.find(inv => inv.email === email)) {
+        showToast('This email already has access');
+        return;
+      }
+
+      investors.push({
+        id: Date.now(),
+        name: name,
+        email: email,
+        password: password,
+        addedAt: new Date().toISOString()
+      });
+
+      saveInvestors(investors);
+      renderInvestors();
+      updateStats();
+
+      // Clear form and generate new password
+      document.getElementById('inv-name').value = '';
+      document.getElementById('inv-email').value = '';
+      generatePassword();
+
+      showToast('Investor added successfully');
+    }
+
+    function removeInvestor(id) {
+      if (!confirm('Remove this investor\'s access?')) return;
+
+      let investors = getInvestors();
+      investors = investors.filter(inv => inv.id !== id);
+      saveInvestors(investors);
+      renderInvestors();
+      updateStats();
+      showToast('Investor removed');
+    }
+
+    function renderInvestors() {
+      const investors = getInvestors();
+      const container = document.getElementById('investor-list');
+
+      if (investors.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <p>No investors added yet</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = investors.map(inv => `
+        <div class="investor-item">
+          <div class="investor-name">${inv.name}</div>
+          <div class="investor-email">${inv.email}</div>
+          <div class="investor-password">${inv.password}</div>
+          <button class="btn btn-danger" onclick="removeInvestor(${inv.id})">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    // ===== ACCESS LOG =====
+    function renderAccessLog() {
+      const logs = JSON.parse(localStorage.getItem(ACCESS_LOG_KEY) || '[]');
+      const container = document.getElementById('access-log');
+
+      if (logs.length === 0) {
+        container.innerHTML = '<div class="empty-state"><p>No access logs yet</p></div>';
+        return;
+      }
+
+      // Show last 10 entries, newest first
+      const recentLogs = logs.slice(-10).reverse();
+
+      container.innerHTML = recentLogs.map(log => {
+        const date = new Date(log.timestamp);
+        const timeStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        return `
+          <div class="log-item">
+            <span class="log-email">${log.email}</span>
+            <span class="log-time">${timeStr}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ===== STATS =====
+    function updateStats() {
+      const investors = getInvestors();
+      const logs = JSON.parse(localStorage.getItem(ACCESS_LOG_KEY) || '[]');
+
+      document.getElementById('stat-investors').textContent = investors.length;
+      document.getElementById('stat-logins').textContent = logs.length;
+
+      // Count last 7 days
+      const weekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+      const recentLogins = logs.filter(log => new Date(log.timestamp).getTime() > weekAgo);
+      document.getElementById('stat-recent').textContent = recentLogins.length;
+    }
+
+    // ===== UTILITIES =====
+    function copyLink() {
+      const input = document.getElementById('share-url');
+      input.select();
+      document.execCommand('copy');
+      showToast('Link copied!');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Handle enter key on password field
+    document.getElementById('admin-password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') adminLogin();
+    });
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

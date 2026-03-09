@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Investor Data Room — Birth Model</title>
+
+  <!-- Prevent indexing -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <link rel="icon" type="image/png" href="BM_App_Icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bm-black: #1b1b1b;
+      --bm-white: #ffffff;
+      --bm-gray: #6c757d;
+      --bm-teal: #abdfe2;
+      --bm-coral: #ff7660;
+      --bm-coral-light: #ffebe7;
+      --bm-dark-teal: #1e3d3c;
+      --bm-light-gray: #f8fafa;
+      --bm-warm-gray: #f4f2f1;
+      --bm-cream: #faf9f7;
+      --bm-teal-light: #e8f6f7;
+      --bm-border: #e8e6e4;
+      --bm-green: #22c55e;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bm-cream);
+      color: var(--bm-black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes checkmark {
+      0% { stroke-dashoffset: 100; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ===== ACCESS GATE ===== */
+    .access-gate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: linear-gradient(170deg, var(--bm-cream) 0%, var(--bm-teal-light) 50%, var(--bm-cream) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .access-gate::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(171, 223, 226, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 118, 96, 0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .gate-card {
+      background: white;
+      border-radius: 28px;
+      padding: 50px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 30px 80px rgba(30, 61, 60, 0.12), 0 10px 30px rgba(30, 61, 60, 0.08);
+      text-align: center;
+      position: relative;
+      animation: scaleIn 0.5s ease;
+    }
+
+    .gate-logo {
+      height: 36px;
+      margin-bottom: 32px;
+    }
+
+    .gate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--bm-coral-light);
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--bm-coral);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .gate-badge .lock-icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    .gate-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .gate-subtitle {
+      font-size: 15px;
+      color: var(--bm-gray);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .gate-form {
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--bm-dark-teal);
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 16px 18px;
+      border: 2px solid var(--bm-border);
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--bm-teal);
+      box-shadow: 0 0 0 4px rgba(171, 223, 226, 0.2);
+    }
+
+    .form-input.error {
+      border-color: var(--bm-coral);
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--bm-coral);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 118, 96, 0.4);
+    }
+
+    .form-submit:active {
+      transform: translateY(0);
+    }
+
+    .form-submit svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .gate-error {
+      display: none;
+      padding: 14px 18px;
+      background: var(--bm-coral-light);
+      border-radius: 10px;
+      font-size: 13px;
+      color: #c53030;
+      margin-bottom: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .gate-error.show {
+      display: block;
+    }
+
+    .gate-footer {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--bm-border);
+    }
+
+    .gate-footer p {
+      font-size: 12px;
+      color: var(--bm-gray);
+      margin-bottom: 16px;
+    }
+
+    .gate-trust {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .gate-trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--bm-gray);
+    }
+
+    .gate-trust-badge .check {
+      color: var(--bm-green);
+    }
+
+    /* ===== DATA ROOM (Hidden by default) ===== */
+    .dataroom {
+      display: none;
+    }
+
+    .dataroom.unlocked {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    /* Header */
+    .dataroom-header {
+      padding: 140px 40px 70px;
+      background: linear-gradient(170deg, var(--bm-cream) 0%, var(--bm-teal-light) 100%);
+      text-align: center;
+      position: relative;
+    }
+
+    .dataroom-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, var(--bm-cream));
+      pointer-events: none;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: white;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--bm-dark-teal);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(30, 61, 60, 0.08);
+    }
+
+    .header-badge .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--bm-green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .dataroom-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .dataroom-title span {
+      color: var(--bm-coral);
+    }
+
+    .dataroom-subtitle {
+      font-size: 17px;
+      color: var(--bm-gray);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .welcome-message {
+      margin-top: 24px;
+      padding: 16px 24px;
+      background: white;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(30, 61, 60, 0.06);
+    }
+
+    .welcome-message span {
+      font-size: 14px;
+      color: var(--bm-gray);
+    }
+
+    .welcome-message strong {
+      color: var(--bm-dark-teal);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      background: white;
+      padding: 50px 40px;
+      border-bottom: 1px solid var(--bm-border);
+    }
+
+    .stats-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      background: var(--bm-light-gray);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(30, 61, 60, 0.08);
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 6px;
+    }
+
+    .stat-value.coral {
+      color: var(--bm-coral);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--bm-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Main Content */
+    .dataroom-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    /* Section Styling */
+    .section {
+      margin-bottom: 70px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--bm-coral);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 15px;
+      color: var(--bm-gray);
+      line-height: 1.6;
+    }
+
+    /* Document Grid */
+    .document-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .document-card {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      border: 2px solid var(--bm-border);
+      transition: all 0.4s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .document-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--bm-teal), var(--bm-coral));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .document-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--bm-teal);
+      box-shadow: 0 20px 50px rgba(30, 61, 60, 0.12);
+    }
+
+    .document-card:hover::before {
+      opacity: 1;
+    }
+
+    .doc-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--bm-teal-light), var(--bm-coral-light));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .document-card:hover .doc-icon {
+      transform: scale(1.05);
+    }
+
+    .doc-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--bm-dark-teal);
+    }
+
+    .doc-type {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--bm-teal-light);
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--bm-dark-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    .doc-type.excel {
+      background: #e7f5e7;
+      color: #217346;
+    }
+
+    .doc-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .doc-description {
+      font-size: 14px;
+      color: var(--bm-gray);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .doc-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid var(--bm-border);
+    }
+
+    .doc-date {
+      font-size: 12px;
+      color: var(--bm-gray);
+    }
+
+    .doc-action {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--bm-coral);
+      transition: gap 0.3s ease;
+    }
+
+    .document-card:hover .doc-action {
+      gap: 10px;
+    }
+
+    .doc-action svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Featured Card */
+    .document-card.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, var(--bm-dark-teal) 0%, #2d5a58 100%);
+      border: none;
+      color: white;
+    }
+
+    .document-card.featured .doc-icon {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .document-card.featured .doc-icon svg {
+      color: white;
+    }
+
+    .document-card.featured .doc-type {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .document-card.featured .doc-title {
+      color: white;
+    }
+
+    .document-card.featured .doc-description {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .document-card.featured .doc-meta {
+      border-top-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .document-card.featured .doc-date {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .document-card.featured .doc-action {
+      color: var(--bm-teal);
+    }
+
+    /* All Documents Button */
+    .view-all-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .btn-view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 36px;
+      background: white;
+      border: 2px solid var(--bm-dark-teal);
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--bm-dark-teal);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-view-all:hover {
+      background: var(--bm-dark-teal);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(30, 61, 60, 0.2);
+    }
+
+    .btn-view-all svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: var(--bm-light-gray);
+      border-radius: 24px;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .contact-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--bm-dark-teal);
+      margin-bottom: 12px;
+    }
+
+    .contact-subtitle {
+      font-size: 15px;
+      color: var(--bm-gray);
+      margin-bottom: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-contact.primary {
+      background: var(--bm-coral);
+      color: white;
+      box-shadow: 0 6px 25px rgba(255, 118, 96, 0.35);
+    }
+
+    .btn-contact.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(255, 118, 96, 0.45);
+    }
+
+    .btn-contact.secondary {
+      background: white;
+      color: var(--bm-dark-teal);
+      border: 2px solid var(--bm-border);
+    }
+
+    .btn-contact.secondary:hover {
+      border-color: var(--bm-dark-teal);
+      transform: translateY(-2px);
+    }
+
+    .btn-contact svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Footer */
+    .dataroom-footer {
+      background: var(--bm-dark-teal);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      height: 32px;
+      margin-bottom: 20px;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 20px;
+    }
+
+    .footer-badges {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .footer-badge .check {
+      color: #4ade80;
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 14px 24px;
+      background: white;
+      border: 2px solid var(--bm-border);
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--bm-gray);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .logout-btn:hover {
+      background: var(--bm-coral-light);
+      border-color: var(--bm-coral);
+      color: var(--bm-coral);
+    }
+
+    .logout-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .document-card.featured {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gate-card {
+        padding: 36px 28px;
+      }
+      .dataroom-header {
+        padding: 120px 20px 50px;
+      }
+      .stats-bar {
+        padding: 30px 20px;
+      }
+      .stats-inner {
+        gap: 16px;
+      }
+      .stat-item {
+        padding: 16px;
+      }
+      .stat-value {
+        font-size: 26px;
+      }
+      .dataroom-content {
+        padding: 50px 20px;
+      }
+      .document-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-section {
+        padding: 36px 24px;
+      }
+      .contact-buttons {
+        flex-direction: column;
+      }
+      .logout-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .stat-value {
+        font-size: 22px;
+      }
+      .gate-trust {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== ACCESS GATE ===== -->
+  <div class="access-gate" id="access-gate">
+    <div class="gate-card">
+      <img src="Birth_Model_Logo.png" alt="Birth Model" class="gate-logo">
+
+      <div class="gate-badge">
+        <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Investor Data Room
+      </div>
+
+      <h1 class="gate-title">Seed Round Materials</h1>
+      <p class="gate-subtitle">Enter your email to access confidential investment documents for Birth Model's seed round.</p>
+
+      <div class="gate-error" id="gate-error">
+        Access denied. Please contact <a href="mailto:anish@birthmodel.com">anish@birthmodel.com</a> to request access.
+      </div>
+
+      <form class="gate-form" id="gate-form">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="access-email" placeholder="you@company.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Access Code</label>
+          <input type="password" class="form-input" id="access-code" placeholder="Enter your access code" required>
+        </div>
+
+        <button type="submit" class="form-submit">
+          Access Data Room
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </form>
+
+      <div class="gate-footer">
+        <p>Need access? Contact <a href="mailto:anish@birthmodel.com" style="color: var(--bm-coral); font-weight: 700;">anish@birthmodel.com</a></p>
+        <div class="gate-trust">
+          <span class="gate-trust-badge"><span class="check">&#10003;</span> SOC 2 Type II</span>
+          <span class="gate-trust-badge"><span class="check">&#10003;</span> HIPAA Compliant</span>
+          <span class="gate-trust-badge"><span class="check">&#10003;</span> Confidential</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DATA ROOM ===== -->
+  <div class="dataroom" id="dataroom">
+    <!-- Navigation (minimal) -->
+    <nav class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="Birth_Model_Logo.png" alt="Birth Model" class="nav-logo-img">
+        </a>
+        <div class="nav-links">
+          <span style="padding: 10px 16px; font-size: 14px; font-weight: 700; color: var(--bm-gray);">Investor Data Room</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="dataroom-header">
+      <div class="header-badge">
+        <span class="live-dot"></span>
+        Seed Round Open
+      </div>
+      <h1 class="dataroom-title">Birth Model <span>Seed Round</span></h1>
+      <p class="dataroom-subtitle">AI-powered predictive intelligence for Labor & Delivery. Transforming maternal healthcare through technology.</p>
+      <div class="welcome-message" id="welcome-message">
+        <span>Welcome, <strong id="user-name">Investor</strong></span>
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <section class="stats-bar">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <div class="stat-value">$750K</div>
+          <div class="stat-label">Raised to Date</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value coral">$1.25M</div>
+          <div class="stat-label">Remaining Open</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$2M</div>
+          <div class="stat-label">Total Round</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$20M</div>
+          <div class="stat-label">Post-Money Valuation</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="dataroom-content">
+      <!-- Core Investment Materials -->
+      <section class="section">
+        <div class="section-header">
+          <div class="section-label">Start Here</div>
+          <h2 class="section-title">Core Investment Materials</h2>
+          <p class="section-subtitle">The essential documents to understand the opportunity.</p>
+        </div>
+
+        <div class="document-grid">
+          <!-- Pitch Deck -->
+          <a href="https://drive.google.com/file/d/1XTjo0jzpx2do2BKKDhQhjmxI3kLjCq4M/view" target="_blank" class="document-card featured">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                <polyline points="13 2 13 9 20 9"/>
+              </svg>
+            </div>
+            <span class="doc-type">PDF</span>
+            <h3 class="doc-title">Investor Pitch Deck</h3>
+            <p class="doc-description">Comprehensive presentation covering vision, product, market opportunity, traction, and team.</p>
+            <div class="doc-meta">
+              <span class="doc-date">March 2026</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Financial Model -->
+          <a href="https://docs.google.com/spreadsheets/d/1Gq323Z0rPCfrPsChRxvV7TaXTLvfqewG/edit" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 3v18h18"/>
+                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+              </svg>
+            </div>
+            <span class="doc-type excel">Excel</span>
+            <h3 class="doc-title">Financial Model + Pipeline</h3>
+            <p class="doc-description">Projections, unit economics, CRM pipeline, and growth scenarios through 2028.</p>
+            <div class="doc-meta">
+              <span class="doc-date">March 2026</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Cap Table -->
+          <a href="https://docs.google.com/spreadsheets/d/1wINSep5Ndjbbs1RbLWF-ieMNiUCr6PG9/edit" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <span class="doc-type excel">Excel</span>
+            <h3 class="doc-title">Cap Table</h3>
+            <p class="doc-description">Current ownership structure and post-money scenarios.</p>
+            <div class="doc-meta">
+              <span class="doc-date">March 2026</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- One Pager -->
+          <a href="https://drive.google.com/file/d/1LyFAWwC80FrVGjBFJZs1pnQejAucgRxU/view" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <span class="doc-type">PDF</span>
+            <h3 class="doc-title">One-Pager</h3>
+            <p class="doc-description">Quick reference overview of Birth Model for sharing with partners.</p>
+            <div class="doc-meta">
+              <span class="doc-date">March 2026</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Trust & Compliance -->
+      <section class="section">
+        <div class="section-header">
+          <div class="section-label">Trust & Compliance</div>
+          <h2 class="section-title">Security & IP</h2>
+          <p class="section-subtitle">Enterprise-ready compliance and protected intellectual property.</p>
+        </div>
+
+        <div class="document-grid">
+          <!-- SOC2 Report -->
+          <a href="https://drive.google.com/file/d/15hWlGcDLj5YOQGix6FbwIOCsw9BmISbq/view" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+            <span class="doc-type">PDF</span>
+            <h3 class="doc-title">SOC 2 Type II Report</h3>
+            <p class="doc-description">Independent audit confirming security controls and data protection practices.</p>
+            <div class="doc-meta">
+              <span class="doc-date">Feb 2025</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Patents -->
+          <a href="https://drive.google.com/drive/folders/1AOVlO_Wder6UcI1wz1y4iYLS3tcAKfkJ" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="6"/>
+                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+              </svg>
+            </div>
+            <span class="doc-type">Folder</span>
+            <h3 class="doc-title">Granted & Pending Patents</h3>
+            <p class="doc-description">2 granted USPTO patents plus pending provisional applications protecting our ML technology.</p>
+            <div class="doc-meta">
+              <span class="doc-date">Nov 2024</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- HIPAA -->
+          <a href="https://drive.google.com/file/d/12BH9RQbvTnU5YSC33x7aPMErPSASxKRD/view" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <span class="doc-type">PDF</span>
+            <h3 class="doc-title">HIPAA Security Assessment</h3>
+            <p class="doc-description">Third-party assessment confirming HIPAA compliance for healthcare data.</p>
+            <div class="doc-meta">
+              <span class="doc-date">Mar 2025</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Vanta Trust Center -->
+          <a href="https://drive.google.com/file/d/1FSDeURDx3cVxb1aVGs1VJ6BJaufC25b4/view" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <span class="doc-type">PDF</span>
+            <h3 class="doc-title">Vanta Trust Center</h3>
+            <p class="doc-description">Continuous compliance monitoring, security policies, and vendor risk management.</p>
+            <div class="doc-meta">
+              <span class="doc-date">Compliance</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Legal & Corporate -->
+      <section class="section">
+        <div class="section-header">
+          <div class="section-label">Legal & Corporate</div>
+          <h2 class="section-title">Contracts & Agreements</h2>
+          <p class="section-subtitle">Corporate documents, customer relationships, and investment history.</p>
+        </div>
+
+        <div class="document-grid">
+          <!-- Corporate Documents -->
+          <a href="https://drive.google.com/drive/folders/1mLOyHzlZg6oRX_Hxzo-Kbga1pi-EKXmR" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <span class="doc-type">Folder</span>
+            <h3 class="doc-title">Incorporation & Stock Split</h3>
+            <p class="doc-description">Certificate of incorporation, corporate resolutions, and stock split documents.</p>
+            <div class="doc-meta">
+              <span class="doc-date">Corporate</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Customer Contracts -->
+          <a href="https://drive.google.com/drive/folders/1-TA3IguTZ7GQdUOlZjVOtu6DZzys45_M" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <span class="doc-type">Folder</span>
+            <h3 class="doc-title">Customer Contracts</h3>
+            <p class="doc-description">Signed agreements with Northwestern Medicine, Orlando Health, Rochester Regional, and more.</p>
+            <div class="doc-meta">
+              <span class="doc-date">Traction</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Employee Contracts -->
+          <a href="https://drive.google.com/drive/folders/1ithU98JOqNrqoSIJWZmHv0ImRnAcADug" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                <line x1="12" y1="11" x2="12" y2="17"/>
+                <line x1="9" y1="14" x2="15" y2="14"/>
+              </svg>
+            </div>
+            <span class="doc-type">Folder</span>
+            <h3 class="doc-title">Employee & Advisor Contracts</h3>
+            <p class="doc-description">Employment agreements, advisor contracts, and compensation structures.</p>
+            <div class="doc-meta">
+              <span class="doc-date">HR</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Investment Agreements -->
+          <a href="https://drive.google.com/drive/folders/1fem6eJOOaurfdnAUDdqkvf92hmrEs4mc" target="_blank" class="document-card">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <span class="doc-type">Folder</span>
+            <h3 class="doc-title">Investment Agreements</h3>
+            <p class="doc-description">Executed SAFEs, side letters, and prior investment documentation.</p>
+            <div class="doc-meta">
+              <span class="doc-date">Legal</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section class="section">
+        <div class="section-header">
+          <div class="section-label">Leadership</div>
+          <h2 class="section-title">Executive Team</h2>
+          <p class="section-subtitle">Experienced team with deep healthcare and technology expertise.</p>
+        </div>
+
+        <div class="document-grid">
+          <!-- Team Structure -->
+          <a href="team-structure.html" target="_blank" class="document-card featured">
+            <div class="doc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <span class="doc-type">Interactive</span>
+            <h3 class="doc-title">Team Structure & Hiring Plan</h3>
+            <p class="doc-description">Current team, org chart, role descriptions, and growth roadmap through 2029.</p>
+            <div class="doc-meta">
+              <span class="doc-date">March 2026</span>
+              <span class="doc-action">
+                View
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+
+      <!-- Contact -->
+      <section class="section">
+        <div class="contact-section">
+          <h2 class="contact-title">Ready to Discuss?</h2>
+          <p class="contact-subtitle">Schedule a call with Dr. Anish Shah to learn more about the opportunity and ask questions.</p>
+          <div class="contact-buttons">
+            <a href="https://calendly.com/anish-birthmodel/30min" target="_blank" class="btn-contact primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              Schedule a Call
+            </a>
+            <a href="mailto:anish@birthmodel.com" class="btn-contact secondary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Email Anish
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dataroom-footer">
+      <div class="footer-content">
+        <img src="birthmodelfooterlogo.png" alt="Birth Model" class="footer-logo">
+        <p class="footer-text">This data room contains confidential information intended solely for prospective investors. By accessing these materials, you agree to keep all information confidential.</p>
+        <div class="footer-badges">
+          <div class="footer-badge">
+            <span class="check">&#10003;</span> SOC 2 Type II
+          </div>
+          <div class="footer-badge">
+            <span class="check">&#10003;</span> HIPAA Compliant
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Logout Button -->
+    <button class="logout-btn" id="logout-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+        <polyline points="16 17 21 12 16 7"/>
+        <line x1="21" y1="12" x2="9" y2="12"/>
+      </svg>
+      Sign Out
+    </button>
+  </div>
+
+  <script>
+    // ===== CONFIGURATION =====
+    const INVESTORS_KEY = 'dataroom_investors';
+    const ACCESS_LOG_KEY = 'dataroom_access_log';
+
+    // ===== ACCESS CONTROL =====
+    const accessGate = document.getElementById('access-gate');
+    const dataroom = document.getElementById('dataroom');
+    const gateForm = document.getElementById('gate-form');
+    const gateError = document.getElementById('gate-error');
+    const accessEmailInput = document.getElementById('access-email');
+    const accessCodeInput = document.getElementById('access-code');
+    const welcomeMessage = document.getElementById('user-name');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // Get investors from localStorage (set via admin panel)
+    function getInvestors() {
+      return JSON.parse(localStorage.getItem(INVESTORS_KEY) || '[]');
+    }
+
+    // Check if already authenticated
+    function checkAuth() {
+      const session = sessionStorage.getItem('dataroom_session');
+      if (session) {
+        const { email, name, timestamp } = JSON.parse(session);
+        // Session expires after 24 hours
+        if (Date.now() - timestamp < 24 * 60 * 60 * 1000) {
+          showDataroom(email, name);
+          return true;
+        }
+        sessionStorage.removeItem('dataroom_session');
+      }
+      return false;
+    }
+
+    // Validate access against investor list
+    function validateAccess(email, password) {
+      const emailLower = email.toLowerCase().trim();
+      const investors = getInvestors();
+
+      // Find investor with matching email and password
+      const investor = investors.find(inv =>
+        inv.email.toLowerCase() === emailLower && inv.password === password
+      );
+
+      return investor || null;
+    }
+
+    // Show data room
+    function showDataroom(email, name) {
+      accessGate.style.display = 'none';
+      dataroom.classList.add('unlocked');
+
+      // Use provided name or extract from email
+      if (!name) {
+        name = email.split('@')[0].split('.').map(part =>
+          part.charAt(0).toUpperCase() + part.slice(1)
+        ).join(' ');
+      }
+      welcomeMessage.textContent = name;
+
+      // Log access for tracking
+      logAccess(email, 'login');
+    }
+
+    // Form submission
+    gateForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = accessEmailInput.value;
+      const password = accessCodeInput.value;
+
+      const investor = validateAccess(email, password);
+
+      if (investor) {
+        // Save session
+        sessionStorage.setItem('dataroom_session', JSON.stringify({
+          email: email,
+          name: investor.name,
+          timestamp: Date.now()
+        }));
+
+        showDataroom(email, investor.name);
+      } else {
+        // Show error
+        gateError.classList.add('show');
+        accessEmailInput.classList.add('error');
+        accessCodeInput.classList.add('error');
+
+        // Remove error state after animation
+        setTimeout(() => {
+          accessEmailInput.classList.remove('error');
+          accessCodeInput.classList.remove('error');
+        }, 500);
+      }
+    });
+
+    // Clear error on input
+    [accessEmailInput, accessCodeInput].forEach(input => {
+      input.addEventListener('input', () => {
+        gateError.classList.remove('show');
+      });
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', function() {
+      sessionStorage.removeItem('dataroom_session');
+      dataroom.classList.remove('unlocked');
+      accessGate.style.display = 'flex';
+      gateForm.reset();
+      gateError.classList.remove('show');
+    });
+
+    // Log access for tracking (stored in localStorage, visible in admin panel)
+    function logAccess(email, action) {
+      const logs = JSON.parse(localStorage.getItem(ACCESS_LOG_KEY) || '[]');
+      logs.push({
+        email: email,
+        action: action,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+      });
+      // Keep last 100 entries
+      if (logs.length > 100) logs.shift();
+      localStorage.setItem(ACCESS_LOG_KEY, JSON.stringify(logs));
+    }
+
+    // Initial auth check
+    checkAuth();
+  </script>
+</body>
+</html>
